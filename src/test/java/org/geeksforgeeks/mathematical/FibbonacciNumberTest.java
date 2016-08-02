@@ -1,6 +1,5 @@
-package org.geeksforgeeks.mathematicaltest;
+package org.geeksforgeeks.mathematical;
 
-import org.geeksforgeeks.mathematical.FibbonaciNumbers;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;

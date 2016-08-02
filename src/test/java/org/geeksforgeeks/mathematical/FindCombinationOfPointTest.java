@@ -1,6 +1,5 @@
-package org.geeksforgeeks.mathematicaltest;
+package org.geeksforgeeks.mathematical;
 
-import org.geeksforgeeks.mathematical.PrintCombinationOfPoints;
 import org.junit.Test;
 
 import java.util.ArrayList;

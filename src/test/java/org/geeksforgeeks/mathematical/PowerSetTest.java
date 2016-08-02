@@ -1,6 +1,5 @@
-package org.geeksforgeeks.mathematicaltest;
+package org.geeksforgeeks.mathematical;
 
-import org.geeksforgeeks.mathematical.PowerSet;
 import org.junit.Test;
 import static junit.framework.Assert.assertEquals;
 import java.util.ArrayList;
