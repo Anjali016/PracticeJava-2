@@ -50,33 +50,37 @@ public class SlidingWindowExamples {
     * */
 
     public static void findFlips(int[] arr, int m) {
-        int numZeros = 0, windowL = 0, windowR = 0, maxWindowLen = -1, lestIndex, rightIndex;
+        int numZeros = 0, windowL = 0, windowR = 0, maxWindowLen = -1, leftIndex = 0, rightIndex = 0;
 
         while (windowR < arr.length) {
 
             if (numZeros <= m){
                 windowR++;
-                if (arr[windowR] == 0) numZeros++;
+                if (windowR < arr.length && arr[windowR] == 0) numZeros++;
             }
 
             if (numZeros > m) {
                 windowL++;
-                if (arr[windowL] == 0) numZeros--;
+                if (windowL < arr.length && arr[windowL] == 0) numZeros--;
             }
 
             if (windowR - windowL > maxWindowLen) {
-                lestIndex = windowL;
+                leftIndex = windowL;
                 rightIndex = windowR;
-                maxWindowLen = windowR -windowL;
+                maxWindowLen = windowR - windowL;
             }
         }
+        //System.out.print(maxWindowLen);
+        for (int i = leftIndex; i <= rightIndex - 1; i++)
+            if (arr[i] == 0) System.out.print(i + " ");
 
     }
 
 
 
     public static void main(String[] args) {
-
+        int[] arr =  {1, 1, 0, 1, 1, 0, 0, 1, 1, 1 };
+        findFlips(arr, 1);
     }
 
 

@@ -145,8 +145,45 @@ public class BSTproblems {
 
     //--------------------------------------------------------------------------------------------
     //    Remove BST keys outside the given range
+
+    // Balanced BST to DLL
+    static TreeNode head = null;
+   static TreeNode pre = null;
+    public static void bstToDLL(TreeNode root) {
+        if (root == null) return;
+
+        bstToDLL(root.left);
+        if (head == null) {
+            head = root;
+        }else {
+            root.left = pre;
+            pre.right = root;
+        }
+        pre = root;
+        bstToDLL(root.right);
+    }
     //--------------------------------------------------------------------------------------------
     //    Find a pair with given sum in a Balanced BST
+
+    public static TreeNode getLastNode(TreeNode head) {
+        if (head.right == null) return head;
+        return getLastNode(head.right);
+    }
+    public static void findPairs(TreeNode root, int sum) {
+        bstToDLL(root);
+        TreeNode left = head;
+        TreeNode right = getLastNode(head);
+        while (left != right) {
+
+            if (left.data + right.data == sum) {
+                System.out.print(left.data +" " + right.data);
+                break;
+            }
+            if (left.data + right.data > sum) right = right.left;
+            else left = left.right;
+
+        }
+    }
     //--------------------------------------------------------------------------------------------
     //    Find if there is a triplet in a Balanced BST that adds to zero
     //--------------------------------------------------------------------------------------------
@@ -267,9 +304,11 @@ public class BSTproblems {
         TreeNode root = new TreeNode(2);
         root.left = new TreeNode(1);
         root.right = new TreeNode(3);
-        TreeNode root1 = new TreeNode(5);
-        root1.left = new TreeNode(4);
-        root1.right = new TreeNode(6);
+
+        findPairs(root, 4);
+//        TreeNode root1 = new TreeNode(5);
+//        root1.left = new TreeNode(4);
+//        root1.right = new TreeNode(6);
 //        root.left.right.left = new TreeNode(10);
 //        root.left.right.right = new TreeNode(14);
 //        convertToGreaterSum(root);
@@ -286,8 +325,8 @@ public class BSTproblems {
 //    System.out.print(isBST(root));
 //preOder(mergeBSTs(root1, root));
 //inorderPreSucc(root, 2);
-        Relative relative = new Relative();
-        inorderSuccessor(root, root, relative);
-        System.out.print( relative.succ.data);
+//        Relative relative = new Relative();
+//        inorderSuccessor(root, root, relative);
+//        System.out.print( relative.succ.data);
     }
 }
