@@ -56,12 +56,12 @@ public class SlidingWindowExamples {
 
             if (numZeros <= m){
                 windowR++;
-                numZeros++;
+                if (arr[windowR] == 0) numZeros++;
             }
 
             if (numZeros > m) {
                 windowL++;
-                numZeros--;
+                if (arr[windowL] == 0) numZeros--;
             }
 
             if (windowR - windowL > maxWindowLen) {
