@@ -48,6 +48,30 @@ public class SlidingWindowExamples {
     *  arr = {1 1 0 1 1 0 0 1 1 1 } m = 2
     *  output = {1 1 0 1 1 1 1 1 1 1} position = 5, 6
     * */
+
+    public static void findFlips(int[] arr, int m) {
+        int numZeros = 0, windowL = 0, windowR = 0, maxWindowLen = -1, lestIndex, rightIndex;
+
+        while (windowR < arr.length) {
+
+            if (numZeros <= m){
+                windowR++;
+                numZeros++;
+            }
+
+            if (numZeros > m) {
+                windowL++;
+                numZeros--;
+            }
+
+            if (windowR - windowL > maxWindowLen) {
+                lestIndex = windowL;
+                rightIndex = windowR;
+                maxWindowLen = windowR -windowL;
+            }
+        }
+
+    }
     public static int findCandies(int[] ratings) {
         int dp[] = new int[ratings.length];
         int candies = 0;
@@ -65,4 +89,6 @@ public class SlidingWindowExamples {
         return candies;
 
     }
+
+
 }
