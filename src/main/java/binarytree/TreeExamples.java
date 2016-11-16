@@ -209,6 +209,20 @@ public class TreeExamples {
             System.out.println();
         }
     }
+    static int leafLevel = Integer.MAX_VALUE;
+    public static boolean isAtSameLevel(TreeNode root, int currentLevel) {
+
+        if (root != null) {
+            if(isLeaf(root)) {
+                if (currentLevel > leafLevel) return false;
+                leafLevel = currentLevel;
+            }
+            if(!isAtSameLevel(root.left, currentLevel + 1)) return false;
+            if(!isAtSameLevel(root.right, currentLevel + 1)) return false;
+
+        }
+        return true;
+    }
 
     public static void printLevel(TreeNode root, int level) {
 
@@ -291,17 +305,18 @@ public class TreeExamples {
         root.left.left = new TreeNode(4);
         root.left.right = new TreeNode(5);
         root.right = new TreeNode(8);
+        root.right.left = new TreeNode(9);
         root.right.right = new TreeNode(7);
-        root.right.right.right = new TreeNode(8);
+//        root.right.right.right = new TreeNode(8);
+        System.out.print(isAtSameLevel(root, 0));
 
-
-        TreeNode root1 = new TreeNode(1);
-        root1.left = new TreeNode(2);
-
-        int [] in = {2, 1, 3};
-        int [] pre = {1, 2, 3};
-        Height h = new Height();
-        inOrderWithoutTraversal(root);
+//        TreeNode root1 = new TreeNode(1);
+//        root1.left = new TreeNode(2);
+//
+//        int [] in = {2, 1, 3};
+//        int [] pre = {1, 2, 3};
+//        Height h = new Height();
+//        inOrderWithoutTraversal(root);
 //        printStar(10);
 //        System.out.print(isChildsum(root));
 //        System.out.print(isBalanced(root));
