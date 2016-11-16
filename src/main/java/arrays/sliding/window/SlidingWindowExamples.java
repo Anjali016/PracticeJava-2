@@ -60,8 +60,9 @@ public class SlidingWindowExamples {
             }
 
             if (numZeros > m) {
-                windowL++;
                 if (windowL < arr.length && arr[windowL] == 0) numZeros--;
+                windowL++;
+
             }
 
             if (windowR - windowL > maxWindowLen) {
@@ -80,7 +81,7 @@ public class SlidingWindowExamples {
 
     public static void main(String[] args) {
         int[] arr =  {1, 1, 0, 1, 1, 0, 0, 1, 1, 1 };
-        findFlips(arr, 1);
+        findFlips(arr, 2);
     }
 
 
