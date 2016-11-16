@@ -17,7 +17,7 @@ public class QeensProblem {
         for (int row = x, col = y; row >= 0 && col >= 0; row--, col--) if(board[row][col] == 1) return false;
 
         // digonal checking
-        for (int row = x, col = y; x < board.length && y >= 0; x++, y--) if(board[row][col] == 1) return false;
+        for (int row = x, col = y; row < board.length && y >= 0; row++, y--) if(board[row][col] == 1) return false;
         return true;
     }
     public static boolean solve(int col) {
@@ -39,17 +39,20 @@ public class QeensProblem {
     public static int[][] solveProblem(int queens) {
         board = new int[queens][queens];
         solve(0);
+
+        return board;
+    }
+
+
+    public static void main(String[] args) {
+
+        int[][] board = solveProblem(4);
+
         for (int i = 0 ; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 System.out.print(board[i][j]);
             }
             System.out.println();
         }
-        return board;
-    }
-
-    public static void main(String[] args) {
-
-        solveProblem(4);
     }
 }
