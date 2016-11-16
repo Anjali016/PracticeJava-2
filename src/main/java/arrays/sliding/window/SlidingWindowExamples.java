@@ -48,4 +48,21 @@ public class SlidingWindowExamples {
     *  arr = {1 1 0 1 1 0 0 1 1 1 } m = 2
     *  output = {1 1 0 1 1 1 1 1 1 1} position = 5, 6
     * */
+    public static int findCandies(int[] ratings) {
+        int dp[] = new int[ratings.length];
+        int candies = 0;
+        for (int i = 0; i < dp.length; i++) dp[i] = 1;
+
+        for (int i = 1; i < dp.length; i++)
+            if (ratings[i - 1] < ratings[i])
+                dp[i] = dp[i - 1] + 1;
+
+        for (int i = ratings.length - 2; i >=0; i--)
+            if (ratings[i + 1] > ratings[i])
+                dp[i] = Math.max(dp[i + 1] + 1, dp[i]);
+
+        for (int num : dp) candies += num;
+        return candies;
+
+    }
 }
