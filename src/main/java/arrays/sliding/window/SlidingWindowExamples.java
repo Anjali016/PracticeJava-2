@@ -55,8 +55,9 @@ public class SlidingWindowExamples {
         while (windowR < arr.length) {
 
             if (numZeros <= m){
-                windowR++;
+
                 if (windowR < arr.length && arr[windowR] == 0) numZeros++;
+                windowR++;
             }
 
             if (numZeros > m) {
@@ -71,8 +72,8 @@ public class SlidingWindowExamples {
                 maxWindowLen = windowR - windowL;
             }
         }
-        //System.out.print(maxWindowLen);
-        for (int i = leftIndex; i <= rightIndex - 1; i++)
+        System.out.println(maxWindowLen);
+        for (int i = leftIndex; i < rightIndex; i++)
             if (arr[i] == 0) System.out.print(i + " ");
 
     }
@@ -80,8 +81,8 @@ public class SlidingWindowExamples {
 
 
     public static void main(String[] args) {
-        int[] arr =  {1, 1, 0, 1, 1, 0, 0, 1, 1, 1 };
-        findFlips(arr, 2);
+        int[] arr =  { 0, 1, 1, 1 };
+        findFlips(arr, 1);
     }
 
 
