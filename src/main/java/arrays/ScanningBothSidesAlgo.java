@@ -30,4 +30,6 @@ public class ScanningBothSidesAlgo {
     * 2. Children with a higher rating get more candies than their neighbors.
     * */
 
+
+
 }

@@ -7,18 +7,17 @@ public class SlidingWindowExamples {
   * */
     public static int maxAvg(int[] arr, int k) {
         if (k > arr.length) return 0;
-        int windowL = 0, windowR = k - 1, maxSum, currSum = 0, resIndex = 0;
+        int  maxSum, currSum = 0, index = 0;
         for (int i = 0; i < k; i++) currSum += arr[i];
         maxSum = currSum;
-        while (windowR < arr.length) {
-            currSum -= arr[windowL];
-            currSum += arr[windowR++];
-            if (maxSum < currSum) {
-                resIndex = windowL;
+        for (int windowL = 0; windowL < arr.length - k; windowL++) {
+            currSum = currSum - arr[windowL] + arr[windowL + k];
+            if (currSum > maxSum){
+                index = windowL;
                 maxSum = currSum;
             }
         }
-        return resIndex;
+        return index;
     }
 
     /*
@@ -36,4 +35,17 @@ public class SlidingWindowExamples {
         }
         return minSum;
     }
+
+
+    /*
+    * You are given with an array of 1s and 0s. And you are given with an integer m,
+    * which signifies number of flips allowed.
+    * Find the position of zeros which when flipped will produce maximum continuous series of 1s.
+    * Example:
+    * arr = {1 1 0 1 1 0 0 1 1 1 } m = 1
+    * output = {1 1 1 1 1 0 0 1 1 1} position = 2
+    *
+    *  arr = {1 1 0 1 1 0 0 1 1 1 } m = 2
+    *  output = {1 1 0 1 1 1 1 1 1 1} position = 5, 6
+    * */
 }
