@@ -30,10 +30,29 @@ public class ScanningBothSidesAlgo {
     * 2. Children with a higher rating get more candies than their neighbors.
     * */
 
+    public static int findCandies(int[] ratings) {
+        int dp[] = new int[ratings.length];
+        int candies = 0;
+        for (int i = 0; i < dp.length; i++) dp[i] = 1;
+
+        for (int i = 1; i < dp.length; i++)
+            if (ratings[i - 1] < ratings[i])
+                dp[i] = dp[i - 1] + 1;
+
+        for (int i = ratings.length - 2; i >=0; i--)
+            if (ratings[i + 1] < ratings[i])
+                dp[i] = Math.max(dp[i + 1] + 1, dp[i]);
+
+        for (int num : dp) candies += num;
+        return candies;
+
+    }
+
     public static void main(String[] args) {
 
-        int[] arr = {0,1,0,2,1,0,1,3,2,1,2,1};
-        System.out.print(findWater(arr));
+        int[] arr = {1, 2, 2};
+        System.out.print(findCandies(arr));
+
     }
 
 }
