@@ -12,16 +12,9 @@ public class TopologicalSort {
     public static void dfs(Map<GraphNode, LinkedList<GraphNode>> graph, GraphNode current) {
 
         current.isVisited = true;
-        for (GraphNode node : graph.get(current)) {
-            if(!node.isVisited) {
-
-                dfs(graph, node);
-            }
-
-        }
-
+        for (GraphNode node : graph.get(current))
+            if(!node.isVisited) dfs(graph, node);
         tSort.add(current);
-
     }
 
     public static void topologicalSort(Map<GraphNode, LinkedList<GraphNode>> graph) {

@@ -5,6 +5,26 @@ import utilities.LinkNode;
 
 public class LinkedListExample {
 
+
+    /*
+    * 1.
+    * Merge K sorted linked lists
+    * Given K sorted linked lists of size N each, merge them and print the sorted output.
+    * Example:
+    * Input: k = 3, n =  4
+    * list1 = 1->3->5->7->NULL
+    * list2 = 2->4->6->8->NULL
+    * list3 = 0->9->10->11
+    *
+    * Output:
+    * ->1->2->3->4->5->6->7->8->9->10->11
+    *
+    * Solution : (1) Min Heap (extra Space ((n)log(k))
+    * Solution2 : (2)
+    * */
+
+
+
     public static void printList(LinkNode head) {
 
         while (head != null) {
@@ -12,6 +32,7 @@ public class LinkedListExample {
             head = head.next;
         }
     }
+
 
     public static LinkNode reverseLinkedList(LinkNode head) {
 

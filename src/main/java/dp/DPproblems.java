@@ -5,10 +5,8 @@ import java.util.Scanner;
 
 public class DPproblems {
 
-    /*
-    *              5    4     3
-    *            4
-    * */
+//Given you can climb 1,2, or 3 stairs in one step, how many ways of reaching the top
+
 
     public  int minCoinChange(int[] coins, int sum) {
         int min = Integer.MAX_VALUE;
