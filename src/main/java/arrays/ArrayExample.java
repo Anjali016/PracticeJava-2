@@ -9,6 +9,8 @@ package arrays;
 *
 * */
 
+import java.util.Stack;
+
 public class ArrayExample {
 
 
@@ -220,12 +222,109 @@ public class ArrayExample {
 //        }else
 //            for (int i = n; i < arr.length; i++) maxSubsetNoAdj(arr, tempSum + arr[i], sofar + arr[i] + " ", i + 2);
 //    }
-    //----------------------------------------------------------------------------------------------------------------
-    //----------------------------------------------------------------------------------------------------------------
-    //----------------------------------------------------------------------------------------------------------------
-    //----------------------------------------------------------------------------------------------------------------
-    //----------------------------------------------------------------------------------------------------------------
 
+
+    /**
+     * 31.
+     * Problem: Find duplicates in O(n) time and O(1) extra space
+     * Given an array of n elements which contains elements from 0 to n-1,
+     * with any of these numbers appearing any number of times.
+     * Find these repeating numbers in O(n) and using only constant memor
+     * Solution: Iterate the array if arr[arr[i]] is positive make it negative else its repeatation.
+     */
+    public static void printRepeatation() {
+
+    }
+
+    /**
+     * 32.
+     * Problem: Selection Sort (Requires min swaps O(n) (Memory writes) in worst case.
+     * Solution: Pick a minimum element's index and swap it with ith position.
+     */
+
+    public static void selectionSort(int[] arr) {
+        for (int i = 0; i < arr.length; i++){
+            int minIndex = i;
+            for (int j = i + 1; j < arr.length; j++)
+                if (arr[j] < arr[minIndex]) minIndex = j;
+
+        swapFunc(arr, minIndex, i);
+        }
+    }
+    /**
+     * 33.
+     * Problem: Equilibrium index of an array
+     * Equilibrium index of an array is an index such that
+     * the sum of elements at lower indexes is equal to the sum of elements at higher indexes
+     * Solution: leftSum = 0, rightSum = totalSum, remove ith element & compare leftSum == rightSum return else update
+     * leftSum += arr[i];
+     */
+
+    public static int findEquilibrium(int[] arr) {
+
+        int leftSum = 0, rightSum = 0;
+        for (int n : arr) rightSum += n;
+
+        for (int i = 0; i < arr.length; i++) {
+            rightSum -= arr[i];
+            if (rightSum == leftSum) return i;
+            leftSum += arr[i];
+        }
+        return -1;
+    }
+    /**
+     * 31.
+     * Problem:Next Greater Element
+     * Given an array, print the Next Greater Element (NGE) for every element.
+     * The Next greater Element for an element x is the first greater element on the right side of x in array.
+     * Elements for which no greater element exist, consider next greater element as -1.
+     * Solution:1. Use stack, push 1st element;
+     * 2. for remaining element while stack
+     */
+
+    public static void printNGE(int[] arr) {
+        Stack<Integer> prevStack = new Stack<Integer>();
+        prevStack.push(arr[0]);
+
+        for (int i = 1; i < arr.length; i++) {
+
+            int next = arr[i];
+
+            if (!prevStack.isEmpty()) {
+
+                int prevElement = prevStack.pop();
+
+                while (prevElement < next) {
+                    System.out.println(prevElement +  " -> " + next);
+                    if (prevStack.isEmpty()) break;
+                    prevElement = prevStack.pop();
+                }
+
+                if (next < prevElement) prevStack.push(prevElement);
+            }
+
+            prevStack.push(next);
+        }
+
+        while (!prevStack.isEmpty()) {
+            System.out.println(prevStack.pop() + "->" + -1);
+        }
+    }
+    /**
+     * 31.
+     * Problem:
+     * Solution:
+     */
+    /**
+     * 31.
+     * Problem:
+     * Solution:
+     */
+    /**
+     * 31.
+     * Problem:
+     * Solution:
+     */
 
     //----------------------------------------------------------------------------------------------------------------
     // Swap Function

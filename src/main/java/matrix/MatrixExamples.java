@@ -10,13 +10,39 @@ public class MatrixExamples {
      *
      * Solution: Start from top right corner. To get smaller element move left and for bigger elements go down.
      */
+    public static boolean searchInSortedMat(int[][] mat, int key, int x, int y) {
 
+        if (mat.length <= x || mat[0].length <= y) return false;
+        else if (mat[x][y] == key) return true;
+        else if (mat[x][y] > key) return searchInSortedMat(mat, key, x, y - 1);
+        else return searchInSortedMat(mat, key, x + 1, y);
+    }
     /**
      * 2.
      * Print a given matrix in spiral form.
      *
      * Solution: Use 4 for loops.
      */
+
+    public static void printSpiralForm(int[][] mat) {
+        int m = mat.length, n = mat[0].length, left = 0, top = 0, right = n - 1, bottom = m - 1;
+
+        while (left <= right && top <= bottom) {
+
+            for (int i = left; i <= right; i++) System.out.print(mat[top][i] + " ");
+            top++;
+            for (int i = top; i <= bottom; i++) System.out.print(mat[i][right] + " ");
+            right--;
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--) System.out.print(mat[bottom][i] + " ");
+                bottom--;
+            }
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) System.out.print(mat[i][left] + " ");
+                left++;
+            }
+        }
+    }
 
     /**
      * 3.
@@ -29,6 +55,7 @@ public class MatrixExamples {
      */
 
     /**
+     *  1 2 3
      * 4.
      *Given a cost matrix cost[][] and a position (m, n) in cost[][],
      * write a function that returns cost of minimum cost path to reach (m, n) from (0, 0).
@@ -62,8 +89,9 @@ public class MatrixExamples {
 
 
     public static void main(String[] args) {
-        int[][] mat = {{1, 2, 3},{4, 8, 2},{1, 5, 3}};
-        System.out.print(minPathDP(mat));
+        int[][] mat = {{1}};
+        printSpiralForm(mat);
+//        System.out.print(searchInSortedMat(mat, 8, 0, mat[0].length - 1));
 
     }
 
@@ -71,10 +99,18 @@ public class MatrixExamples {
 
     /**
      * 5.
-     * Print a given matrix in spiral form.
-     *
-     * Solution: Use 4 for loops.
+     * Number of paths with exactly k coins
+     * Given a matrix where every cell has some number of coins.
+     * Count number of ways to reach bottom right from top left with exactly k coins.
+     * We can move to (i+1, j) and (i, j+1) from a cell (i, j).
      */
+
+    public static int findPaths(int[][] mat, int x, int y, int k) {
+
+        if (x >= mat.length || y >= mat[0].length) return 0;
+        else if (x  == mat.length - 1 && y == mat[0].length - 1 && k == mat[x][y]) return 1;
+        else return findPaths(mat, x + 1, y, k - mat[x][y]) + findPaths(mat, x, y + 1, k - mat[x][y]);
+    }
 
     /**
      * 6.
