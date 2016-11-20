@@ -279,7 +279,11 @@ public class ArrayExample {
      * The Next greater Element for an element x is the first greater element on the right side of x in array.
      * Elements for which no greater element exist, consider next greater element as -1.
      * Solution:1. Use stack, push 1st element;
-     * 2. for remaining element while stack
+     * 2. for remaining element pick first,
+     * 2.1 check in stack for smaller element if found print pairs
+     * 2.2 if curr < prev then push back prev
+     * 3 push curr in stack.
+     * 4 At last print -1 for remaining element in stack.
      */
 
     public static void printNGE(int[] arr) {
@@ -288,22 +292,22 @@ public class ArrayExample {
 
         for (int i = 1; i < arr.length; i++) {
 
-            int next = arr[i];
+            int curr = arr[i];
 
             if (!prevStack.isEmpty()) {
 
                 int prevElement = prevStack.pop();
 
-                while (prevElement < next) {
-                    System.out.println(prevElement +  " -> " + next);
+                while (prevElement < curr) {
+                    System.out.println(prevElement +  " -> " + curr);
                     if (prevStack.isEmpty()) break;
                     prevElement = prevStack.pop();
                 }
 
-                if (next < prevElement) prevStack.push(prevElement);
+                if (curr < prevElement) prevStack.push(prevElement);
             }
 
-            prevStack.push(next);
+            prevStack.push(curr);
         }
 
         while (!prevStack.isEmpty()) {
