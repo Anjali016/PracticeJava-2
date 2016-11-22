@@ -9,7 +9,9 @@ package arrays;
 *
 * */
 
-import java.util.Stack;
+import bst.TreeNode;
+
+import java.util.*;
 
 public class ArrayExample {
 
@@ -273,7 +275,7 @@ public class ArrayExample {
         return -1;
     }
     /**
-     * 31.
+     * 34.
      * Problem:Next Greater Element
      * Given an array, print the Next Greater Element (NGE) for every element.
      * The Next greater Element for an element x is the first greater element on the right side of x in array.
@@ -315,20 +317,511 @@ public class ArrayExample {
         }
     }
     /**
-     * 31.
-     * Problem:
-     * Solution:
+     * 35.
+     * Problem: Turn an image by 90 degree
+
+     * Solution: first row => last col in res Matrix and so on.
      */
     /**
-     * 31.
-     * Problem:
-     * Solution:
+     * 36.
+     * Problem: Check if array elements are consecutive
+     * Given an unsorted array of numbers, write a function that returns true if array consists of consecutive numbers.
+     * Solution: Method 1 (Use Sorting)
+     * 1. Sort all element.
+     * 2. Do linear Scan, if diff > 1 return false
+     *
+     * Method 2 (max - min + 1 = n)
+     * 2 All element are distinct.
      */
+
+    public static int getMax(int[] arr) {
+        int max = Integer.MIN_VALUE;
+        for (int n : arr) max = Math.max(max, n);
+        return max;
+
+    }
+    public static int getMin(int[] arr) {
+        int min = Integer.MAX_VALUE;
+        for (int n : arr) min = Math.min(min, n);
+        return min;
+    }
+    public static boolean isConsectutive(int[] arr) {
+
+        int max = getMax(arr);
+        int min = getMin(arr);
+
+        if (max - min + 1 == arr.length) {
+            boolean [] isVisited = new boolean[arr.length];
+            for (int num : arr) {
+                if (isVisited[num - min] != false) return false;
+                else isVisited[num - min] = true;
+            }
+            return true;
+        }
+        return false;
+    }
     /**
-     * 31.
-     * Problem:
+     * 37.
+     * Problem: Find the smallest missing number
+     * Given a sorted array of n integers where each integer is in the range from 0 to m-1 and m > n.
+     * Find the smallest number that is missing from the array.
+     * Solution: Method 1 (Use binary Search)
+     * for i = 0 to m - 1, Bsearch(i) if not present return i; (mlog(n));
+     * 2. Method 2 ( Use Modified binarySearch (log n))
+     */
+
+    public static int findNumber(int[] arr) {
+return 0;
+    }
+
+
+    /**
+     * 39.
+     * Problem: Count the number of occurrences in a sorted array
+
+     * Given a sorted array arr[] and a number x, write a function that counts the occurrences of x in arr[].
+     * Expected time complexity is O(Logn)
+     * Method 2 (Use Binary Search)
+     * 1) Use Binary search to get index of the first occurrence of x in arr[]. Let the index of the first occurrence be i.
+     * 2) Use Binary search to get index of the last occurrence of x in arr[]. Let the index of the last occurrence be j.
+     * 3) Return (j – i + 1);
+     */
+
+
+
+    /**
+     * 40.
+     * Problem: Turn an image by 90 degree
+
+     * Solution: first row => last col in res Matrix and so on.
+     */
+
+
+    /**
+     * 35.
+     * Problem: Turn an image by 90 degree
+
+     * Solution: first row => last col in res Matrix and so on.
+     */
+
+
+    /**
+     * 35.
+     * Problem: Turn an image by 90 degree
+
+     * Solution: first row => last col in res Matrix and so on.
+     */
+
+
+    /**
+     * 35.
+     * Problem: Turn an image by 90 degree
+
+     * Solution: first row => last col in res Matrix and so on.
+     */
+
+
+    /**
+     * 59. The Celebrity Problem
+
+     * Problem: TIn a party of N people, only one person is known to everyone.
+     * Such a person may be present in the party, if yes, (s)he doesn’t know anyone in the party.
+     * We can only ask questions like “does A know B? “. Find the stranger (celebrity) in minimum number of questions.
+     * Solution: The idea is to use two pointers, one from start and one from the end.
+     * Assume the start person is A, and the end person is B. If A knows B, then A must not be the celebrity.
+     * Else, B must not be the celebrity.
+     * We will find a celebrity candidate at the end of the loop.
+     * Go through each person again and check whether this is the celebrity.
+     */
+
+    public static boolean know(int[][] mat, int a, int b) {
+        return mat[a][b] == 1;
+    }
+     public static int findCelebrity(int[][] mat, int n) {
+         int a = 0, b = n - 1;
+
+         while (a < b) {
+             if (know(mat, a, b)) a++;
+             else b--;
+         }
+
+         for (int i = 0; i < n; i++) {
+             if (a != i && know(mat, a, i) || !know(mat, i, a)) return -1;
+         }
+
+        return a;
+     }
+
+
+    /**
+     * 60.
+     * Problem: (Longest Bitonic Subsequence)
+     * Solution:This problem is a variation of standard Longest Increasing Subsequence (LIS) problem.
+     * Let the input array be arr[] of length n. We need to construct two arrays lis[] and lds[]
+     * using Dynamic Programming solution of LIS problem.
+     * lis[i] stores the length of the Longest Increasing subsequence ending with arr[i].
+     * lds[i] stores the length of the longest Decreasing subsequence starting from arr[i].
+     * Finally, we need to return the max value of lis[i] + lds[i] – 1 where i is from 0 to n-1.
+     */
+
+    public static int[] lis(int[] arr) {
+        int[] lis = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) lis[i] = 1;
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (arr[i] > arr[j] && lis[i] < lis[j] + 1) lis[i] = 1 + lis[j];
+            }
+        }
+
+//        int max = Integer.MIN_VALUE;
+//        for (int n : lis) max = Math.max(max, n);
+//        return max;
+        return lis;
+    }
+
+    public static int[] lds(int[] arr) {
+        int[] lds = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) lds[i] = 1;
+        for (int i = arr.length - 2; i >=0; i--){
+            for (int j = arr.length - 1; j > i; j--) {
+                if (arr[i] > arr[j] && lds[i] < lds[j] + 1) lds[i] = 1 + lds[j];
+            }
+        }
+//        int max = Integer.MIN_VALUE;
+//        for (int n : lds) max = Math.max(max, n);
+//        return max;
+        return lds;
+    }
+
+    public static int lbs(int[] arr) {
+        int[] lis = lis(arr);
+        int[] lds = lds(arr);
+
+        int max = lis[0] + lds[0] - 1;
+        for (int i = 1; i < arr.length; i++)
+            if (lis[i] + lds[i] - 1 > max)
+                max = lis[i] + lds[i] - 1;
+        return max;
+    }
+
+    /**
+     * 61.
+     * Problem: Find a sorted subsequence of size 3 in linear time
+     * Given an array of n integers, find the 3 elements such that a[i] < a[j] < a[k] and i < j < k in 0(n) time.
+     * If there are multiple such triplets, then print any one of them.
+     * Solution: Use Auxilliary Space
+     *
+     */
+
+    /**
+     * 62.
+     * Problem: Largest subarray with equal number of 0s and 1s.
+     * Given an array containing only 0s and 1s, find the largest subarray which contain equal no of 0s and 1s.
+     * Expected time complexity is O(n).
+     * Solution: first row => last col in res Matrix and so on.
+     */
+
+    /**
+     * 63.
+     * Problem: Partition problem
+     * Partition problem is to determine whether a given set can be partitioned into two subsets
+     * such that the sum of elements in both subsets is same.
+     *
+     * Solution: 1) Calculate sum of the array. If sum is odd, there can not be two subsets with equal sum, so return false.
+     * 2) If sum of array elements is even, calculate sum/2 and find a subset of array with sum equal to sum/2.
+     * The first step is simple. The second step is crucial, it can be solved either using recursion or Dynamic Programming.
+     */
+// Naive Recursive
+    public static boolean isSubset(int[] arr, int sum, int n) {
+
+        if (n == 0) return sum == 0;
+        if (arr[n - 1] > sum) return isSubset(arr, sum, n - 1);
+        return isSubset(arr, sum, n - 1) || isSubset(arr, sum - arr[n - 1], n - 1);
+    }
+
+    public static boolean isSub(int[] arr) {
+        int sum = 0;
+        for (int n : arr) sum += n;
+        if (sum % 2 != 0) return false;
+        else return isSubset(arr, sum / 2, arr.length);
+    }
+
+
+    /**
+     * 64.
+     * Problem: Maximum Product Subarray.
+     * ven an array that contains both positive and negative integers, find the product of the maximum product subarray.
+     * Expected Time complexity is O(n) and only O(1) extra space can be used.
+     * Solution: It is similar to Largest Sum Contiguous Subarray problem. The only thing to note here is,
+     * maximum product can also be obtained by minimum (negative)
+     * product ending with the previous element multiplied by this element.
+     * For example, in array {12, 2, -3, -5, -6, -2}, when we are at element -2,
+     * the maximum product is multiplication of, minimum product ending with -6 and -2.
+     */
+
+    /**
+     * 65.
+     * Problem: Find a pair with the given difference
+     * Given an unsorted array and a number n, find if there exists a pair of elements in the array whose difference is n.
+
+     * Solution: 1. Create set of array element.
+     * 2. Traverse array, look for arr[i] + diff
+     *
+     */
+
+    /**
+     * 66.
+     * Problem: Replace every element with the greatest element on right side
+
+     * Solution: The idea is to start from the rightmost element, move to the left side one by one,
+     * and keep track of the maximum element.
+     * Replace every element with the maximum element.
+     */
+
+
+
+    /**
+     * 67.
+     * Problem: Turn an image by 90 degree
+
+     * Solution: first row => last col in res Matrix and so on.
+     */
+
+    /**
+     * 84.
+     * Problem: Maximum Subarray Sum(Divide and Conquer)
+     * You are given a one dimensional array that may contain both positive and negative integers,
+     * find the sum of contiguous subarray of numbers which has the largest sum.
+     *  Solution: Divide array in two halves, return Math.max(leftSum, Math.sum(rightSum, sumCrossingBoth))
+     *
+     *                              12
+     *                             /  \
+     *                           1     2
+     *
+     *
+     *
+     */
+
+    public static int sumCrossing(int[] arr, int left, int mid, int right) {
+
+        int currSum = 0;
+        int leftsum = Integer.MIN_VALUE;
+        for (int i = mid ; i >= left; i--) {
+            currSum += arr[i];
+            if (leftsum < currSum) leftsum = currSum;
+        }
+        int rightSum = Integer.MIN_VALUE;
+        currSum = 0;
+        for (int i = mid + 1; i <=right; i++) {
+            currSum += arr[i];
+            if (rightSum < currSum) rightSum = currSum;
+        }
+
+        return leftsum + rightSum;
+    }
+    public static int maxSubarraySum(int[] arr, int left, int right) {
+
+        if (left > right) return 0;
+        else if (left == right) return arr[left];
+        else {
+            int mid = (right + left) / 2 ;
+            return Math.max(maxSubarraySum(arr, left, mid),
+                    Math.max(maxSubarraySum(arr, mid + 1, right), sumCrossing(arr, left, mid, right)));
+        }
+    }
+
+    /**
+     * 85.
+     * Problem: Counting Sort
+     * Counting sort is a sorting technique based on keys between a specific range.
+     * It works by counting the number of objects having distinct key values (kind of hashing).
+     * Then doing some arithmetic to calculate the position of each object in the output sequence.
      * Solution:
      */
+
+    /**
+     * 86.
+     * Problem: Turn an image by 90 degree
+
+     * Solution: first row => last col in res Matrix and so on.
+     */
+
+
+    /**
+     * 87.
+     * Problem: Find the maximum repeating number in O(n) time and O(1) extra space.
+     * Given an array of size n, the array contains numbers in range from 0 to k-1 where k is a positive integer and k <= n.
+     * Find the maximum repeating number in this array. For example, let k be 10 the given array be arr[] = {1, 2, 2, 2, 0, 2, 0, 2, 3, 8, 0, 9, 2, 3}, the maximum repeating number would be 2. Expected time complexity is O(n) and extra space allowed is O(1).
+     * Modifications to array are allowed.
+
+     * Solution: first row => last col in res Matrix and so on.
+     */
+
+
+    /**
+     * 88.
+     * Problem: Stock Buy Sell to Maximize Profit.
+     * The cost of a stock on each day is given in an array,
+     * find the max profit that you can make by buying and selling in those days.
+     * For example, if the given array is {100, 180, 260, 310, 40, 535, 695},
+     * the maximum profit can earned by buying on day 0, selling on day 3.
+     * Again buy on day 4 and sell on day 6. If the given array of prices is sorted in decreasing order,
+     * then profit cannot be earned at all.
+
+
+
+     * Solution: first row => last col in res Matrix and so on.
+     */
+
+
+    /**
+     * 89.
+     * Problem: Turn an image by 90 degree
+
+     * Solution: first row => last col in res Matrix and so on.
+     */
+
+
+    /**
+     * 90.
+     * Problem: Sort elements by frequency | Set 2
+     * Given an array of integers, sort the array according to frequency of elements.
+     * For example, if the input array is {2, 3, 2, 4, 5, 12, 2, 3, 3, 3, 12},
+     * then modify the array to {3, 3, 3, 3, 2, 2, 2, 12, 12, 4, 5}.
+     * Solution: Method 1 (Use BST and sorting).
+     * 1 a) Insert in bst every element, repeating element increase count.
+     * 2 Do inorder traversal of BST, and store frequency of each element in count[] arry;
+     * 3.Sort count[] array.
+     * 4. Traverse array for each x print it freq.
+     *
+     * Method 2. Hashing and sorting.
+     * a). Store element  -> frequency
+     * b) sort according to their frequency.
+     */
+    public static void sortByFrequency(int[] arr) {
+        HashMap<Integer, Integer> countMap = new HashMap<Integer, Integer>();
+        for (int n : arr) {
+            if (countMap.get(n) != null) countMap.put(n, countMap.get(n) + 1);
+            else countMap.put(n, 1);
+        }
+
+        PriorityQueue<HashMap<Integer,Integer>> maxHeap = new PriorityQueue<HashMap<Integer, Integer>>(new Comparator<HashMap<Integer, Integer>>() {
+            public int compare(HashMap<Integer, Integer> o1, HashMap<Integer, Integer> o2) {
+                return o1.get(0) - o2.get(0);
+            }
+        });
+
+
+
+        while (!maxHeap.isEmpty()) {
+            Map<Integer, Integer> temp = maxHeap.poll();
+
+        }
+    }
+
+
+    /**
+     * 91.
+     * Problem: Find a peak element
+     * Given an array of integers. Find a peak element in it.
+     * An array element is peak if it is NOT smaller than its neighbors.
+     * For corner elements, we need to consider only one neighbor.
+     * For example, for input array {5, 10, 20, 15}, 20 is the only peak element.
+     * For input array {10, 20, 15, 2, 23, 90, 67}, there are two peak elements: 20 and 90.
+     * Note that we need to return any one peak element.
+     * Solution:  Binary Search
+     */
+
+
+    /**
+     * 92.
+     * Problem: Print all possible combinations of r elements in a given array of size n
+     * Given an array of size n, generate and print all possible combinations of r elements in array.
+     * For example, if input array is {1, 2, 3, 4} and r is 2,
+     * then output should be {1, 2}, {1, 3}, {1, 4}, {2, 3}, {2, 4} and {3, 4}.
+     * Solution:  Method 1. Permutation,
+     * Method 2. Subset problem
+     */
+
+
+    /**
+     * 93.
+     * Problem: Given an array of of size n and a number k, find all elements that appear more than n/k time
+     * Given an array of size n, find all elements in array that appear more than n/k times.
+     * For example, if the input arrays is {3, 1, 2, 2, 1, 2, 3, 3} and k is 4,
+     * then the output should be [2, 3]. Note that size of array is 8 (or n = 8), so we need to find all elements that appear more than 2 (or 8/4) times.
+     * There are two elements that appear more than two times, 2 and 3.
+
+     * Solution: first row => last col in res Matrix and so on.
+     */
+
+
+    /**
+     * 94.
+     * Problem:Unbounded Binary Search Example (Find the point where a monotonically increasing function becomes positive first time)
+
+     * Solution: first row => last col in res Matrix and so on.
+     */
+
+
+    /**
+     * 95.
+     * Problem: Find the Increasing subsequence of length three with maximum product
+     * Given a sequence of non-negative integers,
+     * find the subsequence of length 3 having maximum product with the numbers of the subsequence being in ascending order.
+     * Solution: first row => last col in res Matrix and so on.
+     */
+
+
+    /**
+     * 96.
+     * Problem: Find the minimum element in a sorted and rotated array
+     * A sorted array is rotated at some unknown point, find the minimum element in it.
+
+     * Solution: Use Binary Search
+     * 1. Search for the element which greater prev element, if prev is not present then first element is the answer.
+     */
+    public static int findMinElement(int[] arr, int left, int right) {
+
+        if (left > right) return -1;
+        int mid = left + (right - left) / 2;
+        if(mid == 0 || arr[mid - 1] > arr[mid] && mid == arr.length - 1 || arr[mid + 1] > arr[mid]) return arr[mid];
+        if (arr[arr.length - 1] > arr[mid]) return findMinElement(arr, left, mid - 1);
+        else return findMinElement(arr, mid + 1, right);
+
+    }
+
+
+    /**
+     * 89.
+     * Problem: Turn an image by 90 degree
+
+     * Solution: first row => last col in res Matrix and so on.
+     */
+
+    /**
+     * 89.
+     * Problem: Turn an image by 90 degree
+
+     * Solution: first row => last col in res Matrix and so on.
+     */
+
+
+    /**
+     * 89.
+     * Problem: Turn an image by 90 degree
+
+     * Solution: first row => last col in res Matrix and so on.
+     */
+
+
+    /**
+     * 89.
+     * Problem: Turn an image by 90 degree
+
+     * Solution: first row => last col in res Matrix and so on.
+     */
+
 
     //----------------------------------------------------------------------------------------------------------------
     // Swap Function
@@ -484,10 +977,15 @@ public class ArrayExample {
     //----------------------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
 
-        int[] arr = {1};
-
+        int[] arr = {2, 3, 2, 4, 5, 12, 2, 3, 3, 3, 12};
+        sortByFrequency(arr);
+       // System.out.print(maxSubarraySum(arr, 0, arr.length - 1));
+       // printSubset("", arr, arr.length);
+//        System.out.print(isSub(arr));
 //        maxSubsetNoAdj(arr, 0, "" , 0);
-        System.out.println(numOccurance(arr, 1));
+//        System.out.println(numOccurance(arr, 1));
+
+
 //        int[] a = maxMinForm(arr);
 //        zigZag(arr);
 //        for (int i : arr)
