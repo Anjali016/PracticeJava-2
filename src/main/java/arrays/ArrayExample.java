@@ -785,8 +785,9 @@ return 0;
 
         if (left > right) return -1;
         int mid = left + (right - left) / 2;
-        if(mid == 0 || arr[mid - 1] > arr[mid] && mid == arr.length - 1 || arr[mid + 1] > arr[mid]) return arr[mid];
-        if (arr[arr.length - 1] > arr[mid]) return findMinElement(arr, left, mid - 1);
+        if(mid == 0 || arr[mid - 1] > arr[mid] && mid == arr.length - 1 || arr[mid + 1] > arr[mid])
+            return arr[mid];
+        if (arr[right] > arr[mid]) return findMinElement(arr, left, mid - 1);
         else return findMinElement(arr, mid + 1, right);
 
     }
@@ -977,8 +978,8 @@ return 0;
     //----------------------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
 
-        int[] arr = {2, 3, 2, 4, 5, 12, 2, 3, 3, 3, 12};
-        sortByFrequency(arr);
+        int[] arr = {1, 2, 3, 4};
+        System.out.print(findMinElement(arr, 0, arr.length - 1));
        // System.out.print(maxSubarraySum(arr, 0, arr.length - 1));
        // printSubset("", arr, arr.length);
 //        System.out.print(isSub(arr));
