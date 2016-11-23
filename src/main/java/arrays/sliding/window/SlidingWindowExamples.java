@@ -78,6 +78,37 @@ public class SlidingWindowExamples {
 
     }
 
+    /**
+     * 53.
+     * Problem: Find subarray with given sum
+     * Given an unsorted array of nonnegative integers,
+     * find a continous subarray which adds to a given number.
+     * Solution: currSum = arr[0];
+     * 2. from 1 to last : currSum += arr[i]
+     * 3 if (currSum > sum) remove trailing elements
+     */
+
+    public static boolean findSubarray(int[] arr, int sum) {
+        int windowL = 0, currSum = 0;
+        for (int windowR = 0; windowR < arr.length; windowR++) {
+
+            while (currSum > sum && windowL < windowR - 1) currSum -= arr[windowL++];
+
+            if (sum == currSum) {
+                int end = windowR - 1;
+                System.out.print(windowL + " to " + end);
+                return true;
+            }
+            if (windowR < arr.length) currSum += arr[windowR];
+        }
+        return false;
+    }
+
+
+
+
+
+
     /*
     * Maximum of all subarrays of size k
     *

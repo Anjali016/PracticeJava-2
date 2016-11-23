@@ -398,10 +398,22 @@ return 0;
     /**
      * 47.
      * Problem: Find a Fixed Point in a given array
-
-
-     * Solution:
+     * Given an array of n distinct integers sorted in ascending order,
+     * write a function that returns a Fixed Point in the array, if there is any Fixed Point present in array,
+     * else returns -1. Fixed Point in an array is an index i such that arr[i] is equal to i. Note that integers in array can be negative.
+     * Solution: Use Binary Search
      */
+
+    public static int findFixedPoint(int[] arr, int start, int end) {
+
+        if (start > end ) return -1;
+        int mid = (start + end) / 2;
+        if (mid == arr[mid]) return mid;
+        else if (mid > arr[mid]) return findFixedPoint(arr, mid + 1, end);
+        else return findMinElement(arr, start, mid - 1);
+    }
+
+
 
     /**
      * 48.
@@ -441,14 +453,33 @@ return 0;
     /**
      * 53.
      * Problem: Find subarray with given sum
-
-     * Solution:
+     * Given an unsorted array of nonnegative integers,
+     * find a continous subarray which adds to a given number.
+     * Solution: currSum = arr[0];
+     * 2. from 1 to last : currSum += arr[i]
+     * 3 if (currSum > sum) remove trailing elements
      */
+
+    public static boolean findSubarray(int[] arr, int sum) {
+        int windowL = 0, currSum = 0;
+        for (int windowR = 0; windowR < arr.length; windowR++) {
+
+            while (currSum > sum && windowL < windowR - 1) currSum -= arr[windowL++];
+
+            if (sum == currSum) {
+                int end = windowR - 1;
+                System.out.print(windowL + " to " + end);
+                return true;
+            }
+            if (windowR < arr.length) currSum += arr[windowR];
+        }
+        return false;
+    }
 
     /**
      * 54.
      * Problem: Dynamic Programming | Set 14 (Maximum Sum Increasing Subsequence)
-
+     *
      * Solution:
      */
     /**
@@ -1604,8 +1635,9 @@ return 0;
                 {2, 4, 6, 8},
                 {0, 9, 10, 11}} ;
 
-        int[] a = {10, -3, -4, 7, 6, 5, -4, -1};
-        System.out.print(maxSumCircularSubarray(a));
+        int[] a = {1, 4, 20, 3, 10, 5};
+        findSubarray(a, 33);
+//        System.out.print(maxSumCircularSubarray(a));
 //        ArrayList<Integer> list = new ArrayList<Integer>();
 
 //        for (int n : a) list.add(n);

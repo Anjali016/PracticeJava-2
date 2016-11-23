@@ -283,10 +283,17 @@ public class MatrixExamples {
 
     /**
      * 30.
-     * Print a given matrix in spiral form.
-     *
-     * Solution: Use 4 for loops.
+     * Problem: Rotate Matrix Elements.
+     * Given a matrix, clockwise rotate elements in it.
+     * Solution: Use temp and spiral form similar
      */
+
+    public static void rotateMatrix(int[] arr) {
+        int  m = arr.length - 1, n = arr.length - 1, left = 0, right = n, top = 0, bottom = m;
+
+//        while ()
+
+    }
 
     /**
      * 31.
@@ -419,7 +426,7 @@ public class MatrixExamples {
 
     /**
      * 49.
-     * Print a given matrix in spiral form.
+     * Problem :Print a given matrix in spiral form.
      *
      * Solution: Use 4 for loops.
      */
