@@ -49,8 +49,7 @@ public class ScanningBothSidesAlgo {
                 maxDiff = Math.max(maxDiff, y - x);
                 y++;
             }
-            else
-                x++;
+            else x++;
         }
 
         return maxDiff;
