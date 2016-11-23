@@ -90,10 +90,9 @@ public class SlidingWindowExamples {
 
     public static boolean findSubarray(int[] arr, int sum) {
         int windowL = 0, currSum = 0;
+
         for (int windowR = 0; windowR < arr.length; windowR++) {
-
             while (currSum > sum && windowL < windowR - 1) currSum -= arr[windowL++];
-
             if (sum == currSum) {
                 int end = windowR - 1;
                 System.out.print(windowL + " to " + end);
