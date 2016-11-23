@@ -47,18 +47,36 @@ public class ClassTest {
         return value;
     }
 
-    public static void main(String args[]) {
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int capacity = scanner.nextInt();
-        int[] values = new int[n];
-        int[] weights = new int[n];
-        for (int i = 0; i < n; i++) {
-            values[i] = scanner.nextInt();
-            weights[i] = scanner.nextInt();
-        }
-        DecimalFormat df = new DecimalFormat("#.0000");
-        System.out.print(df.format(getOptimalValue(capacity, values, weights)));
+    public static int flip(int element) {
+
+        return (element == 1) ? 0 : 1;
     }
 
+    public static int findMaxSub(int[] array) {
+        if (array.length == 0) return 0;
+        int currMax = 1;
+        int maxSoFar = 1;
+        int prev = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if(array[i] == flip(prev)) currMax++;
+            else currMax = 1;
+            maxSoFar = Math.max(maxSoFar, currMax);
+            prev = array[i];
+        }
+        return maxSoFar;
+    }
+
+    public static void main(String args[]) {
+
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int k = in.nextInt();
+        int[] array = new int[n];
+        for (int i = 0; i < k ; i++) {
+            int index = in.nextInt();
+            array[index - 1] = flip(array[index - 1]);
+            System.out.println(findMaxSub(array));
+        }
+
+    }
 }

@@ -78,6 +78,18 @@ public class SlidingWindowExamples {
 
     }
 
+    /*
+    * Maximum of all subarrays of size k
+    *
+    * */
+
+    public static void printMaxSub(int[] arr, int k) {
+
+        for (int windowL = 0; windowL < arr.length - k; windowL++) {
+
+        }
+    }
+
 
 
     public static void main(String[] args) {
