@@ -30,6 +30,9 @@ public class ScanningBothSidesAlgo {
     * Solution : Create LeftMin and RightMax
     * Compare both array at each index and update maxDiff.
     * 34 1 2 10
+    *
+    * 34 1 1 1
+    *  34  10  10  10
     * */
     public static int maxDiff(int[] arr) {
         int maxDiff = -1, x = 0, y = 0;
@@ -45,7 +48,9 @@ public class ScanningBothSidesAlgo {
             if (arr[x] < arr[y]) {
                 maxDiff = Math.max(maxDiff, y - x);
                 y++;
-            }else x++;
+            }
+            else
+                x++;
         }
 
         return maxDiff;
