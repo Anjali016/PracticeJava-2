@@ -5,9 +5,11 @@ public class ArrayExample {
      /**
      * 1.
      * Problem: Given an array A[] and a number x, check for pair in A[] with sum as x.
-     *
      * Solution: Use sorting or hashmap.
      */
+    public static void printPairs(int[] arr) {
+
+    }
 
     /**
      * 2.
@@ -133,32 +135,11 @@ public class ArrayExample {
     /**
      * 13. Maximum sum such that no two elements are adjacent.
      */
-//    int maxSum(int[] array) {
-//        sum("",array,0);
-//        return maxSum;
-//    }
-//
-//    private void sum(String soFar, int[] array, int start) {
-//        if (start >= array.length) {
-//            if (maxSum < getSum(soFar)) {
-//                maxSum = getSum(soFar);
-//                path = soFar;
-//            }
-//        }
-//        else for(int i = start; i < array.length; i++) sum(soFar + "," + array[i], array, i + 2);
-//
-//
-//    }
-
     private int getSum(String str) {
         int sum = 0;
         for(String s : str.split(",")) if (!(s.length() == 0)) sum += Integer.parseInt(s);
         return sum;
     }
-
-    /**
-     *  Linear time algo for above.
-     */
     int maxSumLinear(int[] array) {
         int incl = array[0];
         int excl = 0;
