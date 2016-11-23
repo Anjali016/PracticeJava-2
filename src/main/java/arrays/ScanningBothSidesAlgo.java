@@ -27,8 +27,9 @@ public class ScanningBothSidesAlgo {
     * 41.
     * Problem: Given an array arr[], find the maximum j – i such that arr[j] > arr[i].
     *
-    * Solution : Create LeftMin and LeftMax
+    * Solution : Create LeftMin and RightMax
     * Compare both array at each index and update maxDiff.
+    * 34 1 2 10
     * */
     public static int maxDiff(int[] arr) {
         int maxDiff = -1, x = 0, y = 0;
