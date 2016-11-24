@@ -432,16 +432,28 @@ return 0;
     /**
      * 50.
      * Problem: Count smaller elements on right side
-
-
      * Solution:
      */
     /**
      * 51.
      * Problem: Minimum number of jumps to reach end
-
+     * Given an array of integers where each element represents the max number of steps that can be made forward from that element.
+     * Write a function to return the minimum number of jumps to reach the end of the array (starting from the first element).
+     * If an element is 0, then cannot move through that element.
      * Solution:
      */
+
+    public static int minJumps(int[] arr, int start, int end) {
+        if (end == start) return 0;
+        if (start > end) return 100;
+        int  min = 100;
+        for (int i = start; i < arr.length; i++) {
+
+            for (int j = 1; j <= arr[start] ; j++)
+                min =  Math.min(min, 1 + minJumps(arr, start + j, end));
+        }
+        return min;
+    }
 
     /**
      * 52.
@@ -479,9 +491,23 @@ return 0;
     /**
      * 54.
      * Problem: Dynamic Programming | Set 14 (Maximum Sum Increasing Subsequence)
-     *
-     * Solution:
+     * Given an array of n positive integers. Write a program to find the sum of maximum sum
+     * subsequence of the given array such that the intgers in the subsequence are sorted in increasing order.
+     * For example, if input is {1, 101, 2, 3, 100, 4, 5}, then output should be 106 (1 + 2 + 3 + 100)
+     * Solution: Same as Lis but store sum
      */
+
+    public static int sumLIS(int[] arr) {
+        int[] maxSIS = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) maxSIS[i] = arr[i];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < i; i++)
+                if (arr[j] < arr[i] && maxSIS[i] < maxSIS[j] + arr[i]) maxSIS[i] = maxSIS[i] + arr[i];
+        }
+        int maxSum = 0;
+        for (int n : maxSIS) maxSum = Math.max(maxSum, n);
+        return maxSum;
+    }
     /**
      * 55.
      * Problem: Longest Monotonically Increasing Subsequence Size (N log N)
@@ -491,9 +517,27 @@ return 0;
     /**
      * 56.
      * Problem: Find a triplet that sum to a given value
-
-     * Solution:
+     * Given an array and a value, find if there is a triplet in array whose sum is equal to the given value.
+     * If there is such a triplet present in array, then print the triplet and return true. Else return false.
+     * Solution: Use Sorting (O(n2))
      */
+
+    public static boolean isTriplet(int[] arr, int sum) {
+        Arrays.sort(arr);
+        for (int i = 0; i < arr.length; i++) {
+            int newSum = sum - arr[i];
+            int left = i + 1, right = arr.length - 1;
+            while (left < right) {
+                if(newSum == arr[left] + arr[right]) {
+                    System.out.print(arr[i] + " " + arr[left] + " " + arr[right]);
+                    return true;
+                }
+                else if (newSum < arr[left] + arr[right]) right--;
+                else left++;
+            }
+        }
+        return false;
+    }
     /**
      * 57.
      * Problem: Find the smallest positive number missing from an unsorted array
@@ -505,16 +549,20 @@ return 0;
      * 58.
      * Problem: Find the two numbers with odd occurrences in an unsorted array
 
-     * Solution:
+     * Solution: Use Xor
      */
 
-
-
-
-
-
-
-
+    public static void findTwoOddOccNum(int[] arr) {
+        int xor = arr[0];
+        int setBit, x = 0, y = 0;
+        for (int i = 0; i < arr.length; i++) xor ^= arr[i];
+        setBit = xor & (xor - 1);
+        for (int i = 0; i < arr.length; i++) {
+            if ((arr[i] & setBit) == 1) x ^=  arr[i];
+            else y ^= arr[i];
+        }
+        System.out.print(x + " " + y);
+    }
 
     /**
      * 59. The Celebrity Problem
@@ -1095,113 +1143,11 @@ return 0;
 
 
     /**
-     * 89.
+     * 99.
      * Problem: Turn an image by 90 degree
 
      * Solution: first row => last col in res Matrix and so on.
      */
-
-
-    /**
-     * 89.
-     * Problem: Turn an image by 90 degree
-
-     * Solution: first row => last col in res Matrix and so on.
-     */
-
-    /**
-     * 89.
-     * Problem: Turn an image by 90 degree
-
-     * Solution: first row => last col in res Matrix and so on.
-     */
-
-
-    /**
-     * 89.
-     * Problem: Turn an image by 90 degree
-
-     * Solution: first row => last col in res Matrix and so on.
-     */
-
-    /**
-     * 89.
-     * Problem: Turn an image by 90 degree
-
-     * Solution: first row => last col in res Matrix and so on.
-     */
-
-
-    /**
-     * 89.
-     * Problem: Turn an image by 90 degree
-
-     * Solution: first row => last col in res Matrix and so on.
-     */
-
-
-    /**
-     * 89.
-     * Problem: Turn an image by 90 degree
-
-     * Solution: first row => last col in res Matrix and so on.
-     */
-
-
-    /**
-     * 89.
-     * Problem: Turn an image by 90 degree
-
-     * Solution: first row => last col in res Matrix and so on.
-     */
-
-    /**
-     * 89.
-     * Problem: Turn an image by 90 degree
-
-     * Solution: first row => last col in res Matrix and so on.
-     */
-
-
-    /**
-     * 89.
-     * Problem: Turn an image by 90 degree
-
-     * Solution: first row => last col in res Matrix and so on.
-     */
-
-
-    /**
-     * 89.
-     * Problem: Turn an image by 90 degree
-
-     * Solution: first row => last col in res Matrix and so on.
-     */
-
-
-    /**
-     * 89.
-     * Problem: Turn an image by 90 degree
-
-     * Solution: first row => last col in res Matrix and so on.
-     */
-
-
-    /**
-     * 89.
-     * Problem: Turn an image by 90 degree
-
-     * Solution: first row => last col in res Matrix and so on.
-     */
-
-
-    /**
-     * 89.
-     * Problem: Turn an image by 90 degree
-
-     * Solution: first row => last col in res Matrix and so on.
-     */
-
 
 
 
@@ -1428,29 +1374,71 @@ return 0;
     /**
      * 119.
      * Problem: Find the smallest positive integer value that cannot be represented as sum of any subset of a given array
-     * Solution:
+     * Given a sorted array (sorted in non-decreasing order) of positive numbers,
+     * find the smallest positive integer value that cannot be represented as sum of elements of any subset of given set.
+     * Expected time complexity is O(n).
+     *  Solution:
+     *  1. Initialize result = 1 (smallest outcome).
+     *  2 if ( arr[i] > result) found gap res is the answer
+     *  3 else add arr[i] to result.
      */
+
+    public static int findSmallest(int[] arr) {
+        int res = 1;
+        for (int i = 0; i < arr.length && res >= arr[i]; i++) res += arr[i];
+        return res;
+    }
 
 
     /**
      * 120.
      * Problem: Rearrange an array such that ‘arr[j]’ becomes ‘i’ if ‘arr[i]’ is ‘j’
-
-     * Solution:
+     * Given an array of size n where all elements are in range from 0 to n-1, change contents of arr[] so that arr[i] = j is changed to arr[j] = i.
+     * Solution: Method 1(Use temp Array and copy temp[arr[i]] = i; (O(n)) space is required.
+     * Method 2 constant space
+     * 1.The idea is based on the fact that the modified array is basically a permutation of input array.
+     * We can find the target permutation by storing the next item before updating it.
      */
 
     /**
      * 121.
      * Problem: Find position of an element in a sorted array of infinite numbers
 
-     * Solution:
+     * Solution:Since array is sorted, the first thing clicks into mind is binary search,
+     * but the problem here is that we don’t know size of array.
+     * If the array is infinite, that means we don’t have proper bounds to apply binary search. So in order to find position of key, first we find bounds and then apply binary search algorithm.
+     * Let low be pointing to 1st element and high pointing to 2nd element of array, Now compare key with high index element,
+     * ->if it is greater than high index element then copy high index in low index and double the high index.
+     * ->if it is smaller, then apply binary search on high and low indices found.
      */
+    public static int binarySearch(int[] arr, int key, int start, int end) {
+        if (start <= end) {
+            int mid = (start + end) /2 ;
+            if (key == arr[mid]) return mid;
+            else if (arr[mid] > key) return binarySearch(arr, key, start, mid - 1);
+            return binarySearch(arr, key, mid + 1, end);
+        }
+        return -1;
+    }
+
+    public static int findPos(int[] arr, int key) {
+        int start = 0, end = 1, val = arr[start];
+        while (val < key) {
+            start = end;
+            end *= 2;
+            val = arr[end];
+        }
+        return binarySearch(arr, key, start, end);
+
+    }
 
     /**
      * 122.
      * Problem: Can QuickSort be implemented in O(nLogn) worst case time complexity?
 
-     * Solution:
+     * Solution: The answer is yes, we can achieve O(nLogn) worst case.
+     * The idea is based on the fact that the median element of an unsorted array can be found in linear time.
+     * So we find the median first, then partition the array around the median element.
      */
 
     /**
@@ -1459,19 +1447,39 @@ return 0;
 
      * Solution:
      */
+
+    public static void checkDuplicatesKDistance(int[] arr, int k) {
+        Set<Integer> set = new HashSet<Integer>();
+        for (int i = 0; i < k; i++)
+            if (!set.add(arr[i])) System.out.print(arr[i] + " ");
+        for (int windowR = k; windowR < arr.length; windowR++) {
+            set.remove(arr[windowR - k]);
+            if(!set.add(arr[windowR])) System.out.print(arr[windowR]);
+        }
+    }
     /**
      * 124.
      * Problem: Find the element that appears once
-
-     * Solution:
+     * Given an array of integers. All numbers occur twice except one number which occurs once. Find the number in O(n) time & constant extra space.
+     * Solution: Use Xor
      */
 
     /**
      * 125.
      * Problem: Replace every array element by multiplication of previous and next
-
-     * Solution:
+     * Solution: Use prev
      */
+
+    public static void replaceElement(int[] arr) {
+        int prev = arr[0];
+        int curr;
+        arr[0] = prev * arr[1];
+        for (int i = 1; i < arr.length - 1; i++) {
+            curr = arr[i];
+            arr[i] = prev * arr[i + 1];
+            prev = curr;
+        }
+    }
 
     /**
      * 126.
@@ -1503,9 +1511,156 @@ return 0;
     /**
      * 130.
      * Problem: Pythagorean Triplet in an array
+     * Given an array of integers, write a function that returns true if there is a triplet (a, b, c)
+     * that satisfies a2 + b2 = c2.
+     * Solution: Use sorting
+     * 1) Do square of every element in input array. This step takes O(n) time.
+     * 2) Sort the squared array in increasing order. This step takes O(nLogn) time.
+     * 3) To find a triplet (a, b, c) such that a = b + c,
+     */
+
+    public static void findPythTriplet(int[] arr) {
+        for (int i = 0; i < arr.length; i++) arr[i] *= 2;
+        Arrays.sort(arr);
+        for (int i = arr.length - 1; i >= 2; i--) {
+            int left = 0, right = i - 1;
+            while (left < right) {
+                if (arr[i] + arr[left] == arr[right]) System.out.print(arr[i] + " " + arr[left] + " " + arr[right]);
+                else if(arr[i] + arr[left] < arr[right]) left++;
+                else right--;
+            }
+        }
+    }
+
+
+    /**
+     * 131.
+     * Problem: Maximum profit by buying and selling a share at most twice
 
      * Solution:
      */
+
+    /**
+     * 132.
+     * Problem: Find Union and Intersection of two unsorted Arrays
+
+     * Solution:
+     */
+
+    /**
+     * 133.
+     * Problem: Count frequencies of all elements in array in O(1) extra space and O(n) time
+
+     * Solution:
+     */
+
+    /**
+     * 134.
+     * Problem: Generate all possible sorted arrays from alternate elements of two given sorted arrays
+
+     * Solution:
+     */
+
+
+    /**
+     * 135.
+     * Problem: Minimum number of swaps required for arranging pairs adjacent to each other
+
+     * Solution:
+     */
+
+    /**
+     * 136.
+     * Problem: Trapping Rain Water
+
+     * Solution:
+     */
+
+    /**
+     * 137.
+     * Problem: Convert array into Zig-Zag fashion
+
+     * Solution:
+     */
+
+    /**
+     * 138.
+     * Problem: Find maximum average subarray of k length
+
+     * Solution:
+     */
+
+    /**
+     * 139.
+     * Problem: Find maximum value of Sum( i*arr[i]) with only rotations on given array allowed  m
+
+     * Solution:
+     */
+
+    /**
+     * 140.
+     * Problem: Reorder an array according to given indexes
+
+     * Solution:
+     */
+
+
+    /**
+     * 141.
+     * Problem: Find zeroes to be flipped so that number of consecutive 1’s is maximized
+
+     * Solution:
+     */
+
+    /**
+     * 142.
+     * Problem: Count triplets with sum smaller than a given value
+
+     * Solution:
+     */
+
+    /**
+     * 143.
+     * Problem: Find the subarray with least average
+
+     * Solution:
+     */
+
+    /**
+     * 144.
+     * Problem: Count Inversions of size three in a give array
+
+     * Solution:
+     */
+
+    /**
+     * 145.
+     * Problem: Longest Span with same Sum in two Binary arrays
+
+     * Solution:
+     */
+
+    /**
+     * 146.
+     * Problem: Merge two sorted arrays with O(1) extra space
+
+     * Solution:
+     */
+
+    /**
+     * 147.
+     * Problem: Form minimum number from given sequence
+
+     * Solution:
+     */
+
+    /**
+     * 148.
+     * Problem: Subarray/Substring vs Subsequence and Programs to Generate them
+
+     * Solution:
+     */
+
 
 
 
@@ -1531,16 +1686,18 @@ return 0;
         return count;
     }
 
-    /**
-     * 150.
-     * Problem: Rearrange an array in maximum minimum form
-     * Given a sorted array of positive integers, rearrange the array alternately i.e first element should be maximum value, second minimum value, third second max, fourth second min and so on.
-     * Solution:
-     */
-
-
-
-    //----------------------------------------------------------------------------------------------------------------
+//    /**
+//     * 150.
+//     * Problem: Rearrange an array in maximum minimum form
+//     * Given a sorted array of positive integers, rearrange the array alternately i.e first element should be maximum value, second minimum value, third second max, fourth second min and so on.
+//     * Solution:
+//     */
+//
+//
+//
+//
+//
+//    //----------------------------------------------------------------------------------------------------------------
     // Swap Function
     public static void swapFunc(int[] arr, int x, int y) {
 
@@ -1548,60 +1705,84 @@ return 0;
         arr[x] = arr[y];
         arr[y] = temp;
     }
+//
+//    //----------------------------------------------------------------------------------------------------------------
+//   /*
+//   * Convert array into Zig-Zag fashion
+//   * Given an array of distinct elements, rearrange the elements of array in zig-zag fashion in O(n) time. The converted array should be in form a < b > c < d > e < f.
+//   * Example:
+//   * Input:  arr[] = {4, 3, 7, 8, 6, 2, 1}
+//   * Output: arr[] = {3, 7, 4, 8, 2, 6, 1}
+//   * */
+//    public static void zigZag(int[] arr) {
+//        for (int i = 0; i < arr.length - 1; i++) {
+//
+//            if (i % 2 != 0) {
+//                if (arr[i] < arr[i + 1]) swapFunc(arr, i, i + 1);
+//            }else {
+//                if (arr[i] > arr[i + 1]) swapFunc(arr, i, i + 1);
+//            }
+//        }
+//
+//    }
+//
+//
+//
+//    public static int end(int[] arr, int left, int right, int x) {
+//
+//        if (left > right) return -1;
+//        int mid = (left + right) / 2;
+//        if ((mid == arr.length - 1 ||  arr[mid + 1] > arr[mid]) && arr[mid] == x ) return mid;
+//        else if (arr[mid] >= x) return end(arr, mid + 1, right, x);
+//        else return end(arr, left, mid - 1, x);
+//    }
+//    public static int start(int[] arr, int left, int right, int x) {
+//
+//       if (left > right) return -1;
+//       int mid = (left + right) / 2;
+//       if ((mid == 0 ||  arr[mid - 1] < arr[mid]) &&  arr[mid] == x ) return mid;
+//       else if (arr[mid] < x) return start(arr, mid + 1, right, x);
+//       else return start(arr, left, mid - 1, x);
+//   }
+//
+//    public static int numOccurance(int[] arr, int x) {
+//
+//        int s = start(arr, 0, arr.length - 1, x);
+//        int e = end(arr, 0, arr.length - 1 , x);
+//
+//        if (s != -1 && e != -1) return e - s + 1;
+//        else return -1;
+//    }
+//
 
-    //----------------------------------------------------------------------------------------------------------------
-   /*
-   * Convert array into Zig-Zag fashion
-   * Given an array of distinct elements, rearrange the elements of array in zig-zag fashion in O(n) time. The converted array should be in form a < b > c < d > e < f.
-   * Example:
-   * Input:  arr[] = {4, 3, 7, 8, 6, 2, 1}
-   * Output: arr[] = {3, 7, 4, 8, 2, 6, 1}
-   * */
-    public static void zigZag(int[] arr) {
-        for (int i = 0; i < arr.length - 1; i++) {
+    /**
+     * 150.
+     * Problem: Rearrange an array in maximum minimum form
 
-            if (i % 2 != 0) {
-                if (arr[i] < arr[i + 1]) swapFunc(arr, i, i + 1);
-            }else {
-                if (arr[i] > arr[i + 1]) swapFunc(arr, i, i + 1);
-            }
-        }
+     * Solution:
+     */
 
-    }
+    /**
+     * 151.
+     * Problem: Find minimum difference between any two elements
 
+     * Solution:
+     */
 
+    /**
+     * 152.
+     * Problem: Find lost element from a duplicated array
 
-    public static int end(int[] arr, int left, int right, int x) {
+     * Solution:
+     */
 
-        if (left > right) return -1;
-        int mid = (left + right) / 2;
-        if ((mid == arr.length - 1 ||  arr[mid + 1] > arr[mid]) && arr[mid] == x ) return mid;
-        else if (arr[mid] >= x) return end(arr, mid + 1, right, x);
-        else return end(arr, left, mid - 1, x);
-    }
-    public static int start(int[] arr, int left, int right, int x) {
+    /**
+     * 153.
+     * Problem: Count pairs with given sum
 
-       if (left > right) return -1;
-       int mid = (left + right) / 2;
-       if ((mid == 0 ||  arr[mid - 1] < arr[mid]) &&  arr[mid] == x ) return mid;
-       else if (arr[mid] < x) return start(arr, mid + 1, right, x);
-       else return start(arr, left, mid - 1, x);
-   }
+     * Solution:
+     */
 
-    public static int numOccurance(int[] arr, int x) {
-
-        int s = start(arr, 0, arr.length - 1, x);
-        int e = end(arr, 0, arr.length - 1 , x);
-
-        if (s != -1 && e != -1) return e - s + 1;
-        else return -1;
-    }
-
-    /*
-    * Find duplicates in O(n) time and O(1) extra space
-    * Given an array of n elements which contains elements from 0 to n-1, with any of these numbers appearing any number of times.
-    * Find these repeating numbers in O(n) and using only constant memory space.
-    * */
 
     /**
      * 154.
@@ -1629,14 +1810,33 @@ return 0;
      * shortest tower after modifications, and output this difference.
      */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static void main(String[] args) {
 
         int[][] arr =  { {1, 3, 5, 7},
                 {2, 4, 6, 8},
                 {0, 9, 10, 11}} ;
 
-        int[] a = {1, 4, 20, 3, 10, 5};
-        findSubarray(a, 33);
+        int[] a = {10, 5, 3, 4, 3, 5, 6};
+        checkDuplicatesKDistance(a, 3);
+      //  System.out.print(minJumps(a, 0, a.length -1));
+//        findSubarray(a, 33);
 //        System.out.print(maxSumCircularSubarray(a));
 //        ArrayList<Integer> list = new ArrayList<Integer>();
 

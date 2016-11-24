@@ -1,9 +1,15 @@
 package arrays.sliding.window;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class SlidingWindowExamples {
 
     /*
-  * Find maximum average subarray of k length
+  * 138.
+  * Problem: Find maximum average subarray of k length
+  *
+  * Solution use sliding window of k size
   * */
     public static int maxAvg(int[] arr, int k) {
         if (k > arr.length) return 0;
@@ -51,31 +57,23 @@ public class SlidingWindowExamples {
 
     public static void findFlips(int[] arr, int m) {
         int numZeros = 0, windowL = 0, windowR = 0, maxWindowLen = -1, leftIndex = 0, rightIndex = 0;
-
         while (windowR < arr.length) {
-
             if (numZeros <= m){
-
                 if (windowR < arr.length && arr[windowR] == 0) numZeros++;
                 windowR++;
             }
-
             if (numZeros > m) {
                 if (windowL < arr.length && arr[windowL] == 0) numZeros--;
                 windowL++;
-
             }
-
             if (windowR - windowL > maxWindowLen) {
                 leftIndex = windowL;
                 rightIndex = windowR;
                 maxWindowLen = windowR - windowL;
             }
         }
-        System.out.println(maxWindowLen);
         for (int i = leftIndex; i < rightIndex; i++)
             if (arr[i] == 0) System.out.print(i + " ");
-
     }
 
     /**
@@ -103,6 +101,24 @@ public class SlidingWindowExamples {
     }
 
 
+    /**
+     * 123.
+     * Problem: Check if a given array contains duplicate elements within k distance from each other
+
+     * Solution: Use hashSet of K size and sliding window of k size
+     */
+
+    public static void checkDuplicatesKDistance(int[] arr, int k) {
+        Set<Integer> set = new HashSet<Integer>();
+        for (int i = 0; i < k; i++)
+            if (!set.add(arr[i])) System.out.print(arr[i] + " ");
+        for (int windowR = k; windowR < arr.length; windowR++) {
+            set.remove(arr[windowR - k]);
+            if(!set.add(arr[windowR])) System.out.print(arr[windowR]);
+        }
+    }
+
+
 
 
 
@@ -123,7 +139,8 @@ public class SlidingWindowExamples {
 
     public static void main(String[] args) {
         int[] arr =  { 0, 1, 1, 1 };
-        findFlips(arr, 1);
+        int r = maxAvg(arr, 3);
+        System.out.println(r);
     }
 
 
