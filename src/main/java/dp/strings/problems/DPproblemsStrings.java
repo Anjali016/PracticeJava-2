@@ -1,4 +1,4 @@
-package dp;
+package dp.strings.problems;
 
 import java.math.BigInteger;
 import java.util.LinkedHashSet;
