@@ -177,6 +177,26 @@ public class ArrayExample {
      */
 
 
+
+    /**
+     * 17.
+     * Problem: Find the minimum distance between two numbers
+
+
+     * Solution:
+     */
+
+
+
+    /**
+     * 44.
+     * Problem: Find the minimum distance between two numbers
+
+
+     * Solution:
+     */
+
+
     /**
      * 31.
      * Problem: Find duplicates in O(n) time and O(1) extra space
