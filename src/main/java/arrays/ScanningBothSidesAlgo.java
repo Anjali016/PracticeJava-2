@@ -18,7 +18,6 @@ public class ScanningBothSidesAlgo {
         for (int i = 1; i < arr.length; i++) left[i] = Math.max(left[i - 1], arr[i]);
         right[arr.length - 1] = arr[arr.length - 1];
         for (int i = arr.length - 2; i >= 0; i--) right[i] = Math.max(right[i + 1], arr[i]);
-
         for (int i = 0; i < arr.length; i++) water += Math.min(left[i], right[i]) - arr[i];
         return water;
     }
@@ -42,9 +41,7 @@ public class ScanningBothSidesAlgo {
         for (int i = 1; i < arr.length; i++) leftMin[i] = Math.min(leftMin[i - 1], arr[i]);
         rightMax[arr.length - 1] = arr[arr.length - 1];
         for (int i = arr.length - 2; i >=0; i--) rightMax[i] = Math.max(rightMax[i + 1], arr[i]);
-
         while (x < arr.length && y < arr.length) {
-
             if (arr[x] < arr[y]) {
                 maxDiff = Math.max(maxDiff, y - x);
                 y++;
@@ -66,7 +63,6 @@ public class ScanningBothSidesAlgo {
     * */
 
     public static void findProduct(int[] arr) {
-
         int[] leftProduct = new int[arr.length];
         int[] rightProduct = new int[arr.length];
         int[] product = new int[arr.length];
@@ -74,7 +70,6 @@ public class ScanningBothSidesAlgo {
         rightProduct[arr.length - 1] = 1;
         for (int i = 1; i < arr.length; i++) leftProduct[i] = leftProduct[i - 1] * arr[i - 1];
         for (int i = arr.length - 2; i >= 0; i--) rightProduct[i] = rightProduct[i + 1] * arr[i + 1];
-
         for (int i = 0; i < arr.length; i++) product[i] = leftProduct[i] * product[i];
 
     }
@@ -90,25 +85,19 @@ public class ScanningBothSidesAlgo {
         int dp[] = new int[ratings.length];
         int candies = 0;
         for (int i = 0; i < dp.length; i++) dp[i] = 1;
-
         for (int i = 1; i < dp.length; i++)
             if (ratings[i - 1] < ratings[i])
                 dp[i] = dp[i - 1] + 1;
-
         for (int i = ratings.length - 2; i >=0; i--)
             if (ratings[i + 1] < ratings[i])
                 dp[i] = Math.max(dp[i + 1] + 1, dp[i]);
-
         for (int num : dp) candies += num;
         return candies;
 
     }
 
 
-
-
     public static void main(String[] args) {
-
         int[] arr = {1, 2, 2};
         System.out.print(findCandies(arr));
 
