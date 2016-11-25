@@ -234,10 +234,8 @@ public class ArrayExample {
      */
 
     public static int findEquilibrium(int[] arr) {
-
         int leftSum = 0, rightSum = 0;
         for (int n : arr) rightSum += n;
-
         for (int i = 0; i < arr.length; i++) {
             rightSum -= arr[i];
             if (rightSum == leftSum) return i;
@@ -317,10 +315,8 @@ public class ArrayExample {
         return min;
     }
     public static boolean isConsectutive(int[] arr) {
-
         int max = getMax(arr);
         int min = getMin(arr);
-
         if (max - min + 1 == arr.length) {
             boolean [] isVisited = new boolean[arr.length];
             for (int num : arr) {
@@ -425,7 +421,6 @@ return 0;
      */
 
     public static int findFixedPoint(int[] arr, int start, int end) {
-
         if (start > end ) return -1;
         int mid = (start + end) / 2;
         if (mid == arr[mid]) return mid;
@@ -468,7 +463,6 @@ return 0;
         if (start > end) return 100;
         int  min = 100;
         for (int i = start; i < arr.length; i++) {
-
             for (int j = 1; j <= arr[start] ; j++)
                 min =  Math.min(min, 1 + minJumps(arr, start + j, end));
         }
@@ -495,9 +489,7 @@ return 0;
     public static boolean findSubarray(int[] arr, int sum) {
         int windowL = 0, currSum = 0;
         for (int windowR = 0; windowR < arr.length; windowR++) {
-
             while (currSum > sum && windowL < windowR - 1) currSum -= arr[windowL++];
-
             if (sum == currSum) {
                 int end = windowR - 1;
                 System.out.print(windowL + " to " + end);
@@ -602,17 +594,13 @@ return 0;
     }
      public static int findCelebrity(int[][] mat, int n) {
          int a = 0, b = n - 1;
-
-         while (a < b) {
+          while (a < b) {
              if (know(mat, a, b)) a++;
              else b--;
-         }
-
-         for (int i = 0; i < n; i++) {
+          }
+          for (int i = 0; i < n; i++)
              if (a != i && know(mat, a, i) || !know(mat, i, a)) return -1;
-         }
-
-        return a;
+         return a;
      }
 
 
@@ -659,7 +647,6 @@ return 0;
     public static int lbs(int[] arr) {
         int[] lis = lis(arr);
         int[] lds = lds(arr);
-
         int max = lis[0] + lds[0] - 1;
         for (int i = 1; i < arr.length; i++)
             if (lis[i] + lds[i] - 1 > max)
@@ -696,7 +683,6 @@ return 0;
      */
 // Naive Recursive
     public static boolean isSubset(int[] arr, int sum, int n) {
-
         if (n == 0) return sum == 0;
         if (arr[n - 1] > sum) return isSubset(arr, sum, n - 1);
         return isSubset(arr, sum, n - 1) || isSubset(arr, sum - arr[n - 1], n - 1);
@@ -836,7 +822,6 @@ return 0;
         for (int firstSide = 0; firstSide < arr.length - 2; firstSide++) {
             thirdSide = firstSide + 2;
             for (int secondeSide = firstSide + 1; secondeSide < arr.length - 1; secondeSide++) {
-
                 while (thirdSide < arr.length && arr[firstSide] + arr[secondeSide] > arr[thirdSide]) thirdSide++;
                 count += thirdSide - secondeSide - 1;
             }
@@ -882,8 +867,6 @@ return 0;
      */
 
     public static class MyComparator implements Comparator{
-
-
         public int compare(Object o1, Object o2) {
            String XY = String.valueOf(o1) + String.valueOf(o2);
             String YX = String.valueOf(o2) + String.valueOf(o1);
@@ -940,7 +923,6 @@ return 0;
      */
 
     public static int sumCrossing(int[] arr, int left, int mid, int right) {
-
         int currSum = 0;
         int leftsum = Integer.MIN_VALUE;
         for (int i = mid ; i >= left; i--) {
@@ -953,11 +935,9 @@ return 0;
             currSum += arr[i];
             if (rightSum < currSum) rightSum = currSum;
         }
-
         return leftsum + rightSum;
     }
     public static int maxSubarraySum(int[] arr, int left, int right) {
-
         if (left > right) return 0;
         else if (left == right) return arr[left];
         else {
@@ -1044,14 +1024,11 @@ return 0;
             if (countMap.get(n) != null) countMap.put(n, countMap.get(n) + 1);
             else countMap.put(n, 1);
         }
-
         PriorityQueue<HashMap<Integer,Integer>> maxHeap = new PriorityQueue<HashMap<Integer, Integer>>(new Comparator<HashMap<Integer, Integer>>() {
             public int compare(HashMap<Integer, Integer> o1, HashMap<Integer, Integer> o2) {
                 return o1.get(0) - o2.get(0);
             }
         });
-
-
 
         while (!maxHeap.isEmpty()) {
             Map<Integer, Integer> temp = maxHeap.poll();
@@ -1306,9 +1283,7 @@ return 0;
      */
 
     public static int countOnes(int[] array, int start, int end) {
-
         if (start <= end) {
-
             int mid = start + (end - start) / 2;
             if (start == end || array[mid + 1] == 0 && array[mid] == 1) return mid + 1;
             else if (array[mid] < 1) return countOnes(array, start, mid - 1);
@@ -1470,12 +1445,15 @@ return 0;
      */
 
     public static void checkDuplicatesKDistance(int[] arr, int k) {
-        Set<Integer> set = new HashSet<Integer>();
-        for (int i = 0; i < k; i++)
-            if (!set.add(arr[i])) System.out.print(arr[i] + " ");
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for (int i = 0; i < k; i++) {
+            if (map.containsValue(arr[i])) System.out.print(arr[i] + " ");
+            map.put(i, arr[i]);
+        }
         for (int windowR = k; windowR < arr.length; windowR++) {
-            set.remove(arr[windowR - k]);
-            if(!set.add(arr[windowR])) System.out.print(arr[windowR]);
+            map.remove(arr[windowR - k]);
+            if(map.containsValue(arr[windowR])) System.out.print(arr[windowR] + " ");
+            map.put(windowR, arr[windowR]);
         }
     }
     /**
@@ -1721,7 +1699,6 @@ return 0;
 //    //----------------------------------------------------------------------------------------------------------------
     // Swap Function
     public static void swapFunc(int[] arr, int x, int y) {
-
         int temp = arr[x];
         arr[x] = arr[y];
         arr[y] = temp;
@@ -1854,8 +1831,8 @@ return 0;
                 {2, 4, 6, 8},
                 {0, 9, 10, 11}} ;
 
-        int[] a = {10, 5, 3, 4, 3, 5, 6};
-        checkDuplicatesKDistance(a, 3);
+        int[] a = {3, 3, 3, 3};
+        checkDuplicatesKDistance(a, 2);
       //  System.out.print(minJumps(a, 0, a.length -1));
 //        findSubarray(a, 33);
 //        System.out.print(maxSumCircularSubarray(a));
