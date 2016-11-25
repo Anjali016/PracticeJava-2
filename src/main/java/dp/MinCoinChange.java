@@ -8,7 +8,8 @@ public class MinCoinChange {
             int minCoins = Integer.MAX_VALUE;
             for (int coin: coins)
                 if(i >= coin)
-                    dp[i] = Math.min(minCoins, 1 + dp[i - coin]);
+                    minCoins = Math.min(minCoins,  (dp[i - coin] != Integer.MAX_VALUE) ? 1 + dp[i - coin] : dp[i - coin]);
+                dp[i] = minCoins;
         }
         return dp[sum];
     }
@@ -16,7 +17,7 @@ public class MinCoinChange {
 
     public static void main(String[] args) {
 
-        int[] coinSet = {24};
-        System.out.print(minCoinChange(24, coinSet));
+        int[] coinSet = {2};
+        System.out.print(minCoinChange(3, coinSet));
     }
 }
