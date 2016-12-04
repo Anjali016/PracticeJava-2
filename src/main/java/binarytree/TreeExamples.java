@@ -749,7 +749,7 @@ public class TreeExamples {
     public static int sumOfLeftLeaves2(TreeNode root, TreeNode parent) {
         if (root == null) return 0;
         else if (isLeaf(root) && parent.left == root) return root.data;
-        else sumOfLeftLeaves2(root.left, root) + sumOfLeftLeaves2(root.right, root);
+        else return sumOfLeftLeaves2(root.left, root) + sumOfLeftLeaves2(root.right, root);
 
     }
 
