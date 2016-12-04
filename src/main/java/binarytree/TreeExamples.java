@@ -1304,7 +1304,7 @@ public class TreeExamples {
 
     public static void printCousinsNodes(TreeNode root, TreeNode node, int level) {
         if (root != null && level > 1) {
-            if (level == 2 && root.left != null && root.left != node ||root.right != null && root.right != null) {
+            if (level == 2 && root.left != null && root.left != node && root.right != null && root.right != node) {
                  System.out.print(root.left.data + " ");
                  System.out.print(root.right.data + " ");
             } else {
@@ -1521,36 +1521,8 @@ public class TreeExamples {
         root.right.right = new TreeNode(52);
         root.left.right.right = new TreeNode(12);
         root.right.right.left = new TreeNode(50);
-//        root.left = new TreeNode(8);
-//        root.right = new TreeNode(22);
-//        root.left.left = new TreeNode(9);
-//        root.left.right = new TreeNode(3);
-//        root.right.left = new TreeNode(4);
-//        root.right.right = new TreeNode(25);
-//        root.left.right.left = new TreeNode(10);
-//        root.left.right.right = new TreeNode(14);
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        list.add(2);
-        list.add(4);
-        list.add(1);
-        int[] arr = {20, 22, 25};
-        printReverseLevel(root);
-//        printBoundary(root);
-//        convertDLL(root);
-//        TreeNode h = head1;
-//        System.out.print(findLCP(root, 0, 0, root.data - 1));
-//        bottomView(root);
-//        int res = findAmplitude(root, new ArrayList<Integer>());
-//        System.out.print(res);
-//        root.right.left = new TreeNode(5);
-//        root.right.right = new TreeNode(6);
-//        root.right.right.left = new TreeNode(7);
-//        convertToCircularDLL(root);
-//        System.out.print(minSteps(0, 10, 0));
-//        printExtremeNodesAlt(root);
-//        System.out.print(getLevel(root, 7, 1));
-//        printNodesAtKdistance(root, 0);
-//        printRootToPaths(root, "");
+        printCousins(root, root.left.left);
+
     }
 
 
