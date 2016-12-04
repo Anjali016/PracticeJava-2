@@ -1439,7 +1439,8 @@ public class TreeExamples {
     public static boolean existPath(TreeNode root, int[] array, int start) {
         if (root == null) return array.length == 0;
         else if (isLeaf(root)) return compareNodes(root, array, start);
-        else return compareNodes(root, array, start) && (existPath(root.left, array, start + 1) || existPath(root.right, array, start + 1));
+        else return compareNodes(root, array, start) && (existPath(root.left, array, start + 1) ||
+                    existPath(root.right, array, start + 1));
     }
 
 
