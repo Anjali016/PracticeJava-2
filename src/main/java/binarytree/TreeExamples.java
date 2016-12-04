@@ -1436,11 +1436,12 @@ public class TreeExamples {
         if (index >= array.length) return false;
         else return root.data == array[index];
     }
+
     public static boolean existPath(TreeNode root, int[] array, int start) {
-        if (root == null) return array.length == 0;
-        else if (isLeaf(root) && array.length - 1 == start) return compareNodes(root, array, start);
-        else return compareNodes(root, array, start) && (existPath(root.left, array, start + 1) ||
-                    existPath(root.right, array, start + 1));
+        if (root == null) return array.length == start;
+        else return compareNodes(root, array, start) &&
+                existPath(root.left, array, start + 1) ||
+                existPath(root.right, array, start + 1);
     }
 
 
