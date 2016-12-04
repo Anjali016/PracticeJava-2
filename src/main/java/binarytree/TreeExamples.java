@@ -1327,8 +1327,8 @@ public class TreeExamples {
     }
     public static int maxDepth(TreeNode node) {
         if (node == null) return 0;
-        if (isLeafModified(node)) return 1;
-        return 1 + Math.max(maxDepth(node.left), maxDepth(node.right));
+        else if (isLeafModified(node)) return 1;
+        else return 1 + Math.max(maxDepth(node.left), maxDepth(node.right));
     }
 
 
