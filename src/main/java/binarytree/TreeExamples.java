@@ -791,6 +791,17 @@ public class TreeExamples {
 
      * Solution:
      */
+    static TreeNode head1 = null;
+    public static void convertDLL(TreeNode root) {
+        if (root == null) return;
+        convertDLL(root.right);
+        root.right = head;
+        if (head != null) {
+            head.left = root;
+        }
+        head = root;
+        convertDLL(root.right);
+    }
 
 
     /**
@@ -1269,15 +1280,10 @@ public class TreeExamples {
      */
 
     public static void printExtremeNodesAlt(TreeNode root) {
-        int h = height(root);
-        boolean flag = false;
-        for (int i = 0; i < h; i++) {
-            printLevelSpiral(root, i, flag);
-            flag = !flag;
-        }
+        for (int i = 0; i < height(root); i++) printLevelSpiral(root, i, i % 2 == 0);
     }
-    public static boolean printLevelSpiral(TreeNode root, int level, boolean flag) {
 
+    public static boolean printLevelSpiral(TreeNode root, int level, boolean flag) {
         if (root == null) return true;
         else if (level == 0) {
             System.out.print(root.data + " ");
@@ -1285,13 +1291,14 @@ public class TreeExamples {
         }
         else if (flag) {
             if (printLevelSpiral(root.left, level - 1, flag)) return true;
-            if (printLevelSpiral(root.right, level - 1, flag)) return true;
+            else if (printLevelSpiral(root.right, level - 1, flag)) return true;
+            else return false;
         }
         else {
             if (printLevelSpiral(root.right, level - 1, flag)) return true;
-            if (printLevelSpiral(root.left, level - 1, flag)) return true;
+            else if (printLevelSpiral(root.left, level - 1, flag)) return true;
+            else return false;
         }
-        return false;
     }
 
     /**
@@ -1401,22 +1408,16 @@ public class TreeExamples {
      * and compare the node value with this argument value, if satisfies, update the current length of consecutive path
      * otherwise reinitialize current path length by 1.
      */
-    public static void findLCP(TreeNode root, int currLCP, int parentValue, int[] lcp) {
-        if (root == null) return;
-        if (parentValue + 1 == root.data) currLCP++;
-        else currLCP = 1;
-        lcp[0] = Math.max(currLCP, lcp[0]);
-        findLCP(root.left, currLCP, root.data, lcp);
-        findLCP(root.right, currLCP, root.data, lcp);
+    public static int findLCP(TreeNode root, int pathLen, int maxLen, int parentValue) {
+        if (root == null) return maxLen;
+        if (parentValue + 1 == root.data) pathLen++;
+        else pathLen = 1;
+        maxLen = Math.max(maxLen, parentValue);
+        return Math.max(findLCP(root.left, pathLen, maxLen, root.data),
+                findLCP(root.right, pathLen, maxLen, root.data));
     }
 
-    public static int findLCP(TreeNode root) {
-        if (root == null) return 0;
-        int[] lcp = new int[1];
-        findLCP(root, 0, root.data - 1, lcp);
-        return lcp[0];
 
-    }
 
     /**
      * 152.
@@ -1461,7 +1462,7 @@ public class TreeExamples {
 //        root.right.right.left = new TreeNode(50);
         root.left = new TreeNode(8);
         root.right = new TreeNode(22);
-        root.left.left = new TreeNode(5);
+        root.left.left = new TreeNode(9);
         root.left.right = new TreeNode(3);
         root.right.left = new TreeNode(4);
         root.right.right = new TreeNode(25);
@@ -1472,7 +1473,7 @@ public class TreeExamples {
         list.add(4);
         list.add(1);
         int[] arr = {20, 22, 25};
-        System.out.print(existPath(root, arr, 0));
+        System.out.print(findLCP(root, 0, 0, root.data - 1));
 //        bottomView(root);
 //        int res = findAmplitude(root, new ArrayList<Integer>());
 //        System.out.print(res);
