@@ -382,6 +382,7 @@ public class TreeExamples {
     public static void printBoundary(TreeNode root) {
         if (root == null) return;
         else {
+            System.out.print(root.data + " ");
             printLeftBoundry(root.left);
             printLeaves(root);
             printRightBounday(root.right);
@@ -434,6 +435,17 @@ public class TreeExamples {
 
      * Solution:
      */
+    public static void printReverseLevel(TreeNode root) {
+        for (int i = height(root); i >=0; i--) printReverseLevel(root, i);
+    }
+    public static void printReverseLevel(TreeNode root, int level) {
+        if (level == 0) System.out.print(root.data);
+        else {
+            printReverseLevel(root.left, level - 1);
+            printReverseLevel(root.right, level - 1);
+        }
+
+    }
 
 
     /**
@@ -1291,15 +1303,15 @@ public class TreeExamples {
      */
 
     public static void printCousinsNodes(TreeNode root, TreeNode node, int level) {
-        if (root == null || level < 2) return;
-        else if (level == 2) {
-            if (root.left == node || root.right == node) return;
-            if (root.left != null) System.out.print(root.left.data + " ");
-            if (root.right != null) System.out.print(root.right.data + " ");
-        }
-        else {
-            printCousinsNodes(root.left, node, level - 1);
-            printCousinsNodes(root.right, node, level - 1);
+        if (root != null && level > 2) {
+            if (level == 2) {
+                if (root.left == node || root.right == node) return;
+                if (root.left != null) System.out.print(root.left.data + " ");
+                if (root.right != null) System.out.print(root.right.data + " ");
+            } else {
+                printCousinsNodes(root.left, node, level - 1);
+                printCousinsNodes(root.right, node, level - 1);
+            }
         }
     }
     public static void printCousins(TreeNode root, TreeNode node) {
@@ -1484,22 +1496,34 @@ public class TreeExamples {
     }
 
 
-
+/*
+*
+*                           20
+*                         /    \
+     *                  9        49
+     *                /    \    /  \
+     *               5      12 23    52
+     *                              /
+     *                             50
+     *
+     *
+     *
+* */
 
 
 
     public static void main(String[] args) {
        TreeNode root = new TreeNode(20);
-//        root.left = new TreeNode(9);
-//        root.right = new TreeNode(49);
-//        root.left.right = new TreeNode(12);
-//        root.left.left = new TreeNode(5);
-//        root.right.left = new TreeNode(23);
-//        root.right.right = new TreeNode(52);
-//        root.left.right.right = new TreeNode(12);
-//        root.right.right.left = new TreeNode(50);
-        root.left = new TreeNode(8);
-        root.right = new TreeNode(22);
+        root.left = new TreeNode(9);
+        root.right = new TreeNode(49);
+        root.left.right = new TreeNode(12);
+        root.left.left = new TreeNode(5);
+        root.right.left = new TreeNode(23);
+        root.right.right = new TreeNode(52);
+        root.left.right.right = new TreeNode(12);
+        root.right.right.left = new TreeNode(50);
+//        root.left = new TreeNode(8);
+//        root.right = new TreeNode(22);
 //        root.left.left = new TreeNode(9);
 //        root.left.right = new TreeNode(3);
 //        root.right.left = new TreeNode(4);
@@ -1511,8 +1535,10 @@ public class TreeExamples {
         list.add(4);
         list.add(1);
         int[] arr = {20, 22, 25};
-        convertDLL(root);
-        TreeNode h = head1;
+        printReverseLevel(root);
+//        printBoundary(root);
+//        convertDLL(root);
+//        TreeNode h = head1;
 //        System.out.print(findLCP(root, 0, 0, root.data - 1));
 //        bottomView(root);
 //        int res = findAmplitude(root, new ArrayList<Integer>());
