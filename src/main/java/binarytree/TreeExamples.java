@@ -1418,6 +1418,32 @@ public class TreeExamples {
 
     }
 
+    /**
+     * 152.
+     * Problem: Swap Nodes in Binary tree of every k’th level
+
+     * Solution:
+     */
+
+
+    /**
+     * 153.
+     * Problem: Check if there is a root to leaf path with given sequence
+     * Given a binary tree and an array, the task is to find if the given array sequence is present as a root to leaf path in given tree.
+     * Solution:
+     */
+    public static boolean compareNodes(TreeNode root, int[] array, int index) {
+        if (index >= array.length) return false;
+        else return root.data == array[index];
+    }
+    public static boolean existPath(TreeNode root, int[] array, int start) {
+        if (root == null) return array.length == 0;
+        else if (isLeaf(root)) return compareNodes(root, array, start);
+        else return compareNodes(root, array, start) && (existPath(root.left, array, start + 1) || existPath(root.right, array, start + 1));
+    }
+
+
+
 
 
 
@@ -1443,7 +1469,8 @@ public class TreeExamples {
         list.add(2);
         list.add(4);
         list.add(1);
-        System.out.print(sumOfLeftLeaves2(root, null));
+        int[] arr = {20, 22, 25};
+        System.out.print(existPath(root, arr, 0));
 //        bottomView(root);
 //        int res = findAmplitude(root, new ArrayList<Integer>());
 //        System.out.print(res);
