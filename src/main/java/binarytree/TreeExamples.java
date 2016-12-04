@@ -1303,11 +1303,10 @@ public class TreeExamples {
      */
 
     public static void printCousinsNodes(TreeNode root, TreeNode node, int level) {
-        if (root != null && level > 2) {
-            if (level == 2) {
-                if (root.left == node || root.right == node) return;
-                if (root.left != null) System.out.print(root.left.data + " ");
-                if (root.right != null) System.out.print(root.right.data + " ");
+        if (root != null && level > 1) {
+            if (level == 2 && root.left != null && root.left != node ||root.right != null && root.right != null) {
+                 System.out.print(root.left.data + " ");
+                 System.out.print(root.right.data + " ");
             } else {
                 printCousinsNodes(root.left, node, level - 1);
                 printCousinsNodes(root.right, node, level - 1);
