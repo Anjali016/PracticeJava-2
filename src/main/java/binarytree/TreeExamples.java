@@ -746,6 +746,10 @@ public class TreeExamples {
             else return sumOfLeftLeaves(root.left, true) + sumOfLeftLeaves(root.right, false);
     }
 
+    public static boolean isLeft(TreeNode parent, TreeNode node) {
+        if (parent == null) return false;
+        else return parent.left == node;
+    }
     public static int sumOfLeftLeaves2(TreeNode root, TreeNode parent) {
         if (root == null) return 0;
         else if (isLeaf(root) && parent.left == root) return root.data;
@@ -1379,7 +1383,7 @@ public class TreeExamples {
         list.add(2);
         list.add(4);
         list.add(1);
-        System.out.print(sumOfLeftLeaves(root, false));
+        System.out.print(sumOfLeftLeaves2(root, null));
 //        bottomView(root);
 //        int res = findAmplitude(root, new ArrayList<Integer>());
 //        System.out.print(res);
