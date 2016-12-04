@@ -1323,7 +1323,7 @@ public class TreeExamples {
      */
 
     public static boolean isLeafModified(TreeNode node) {
-        return node.left != null && node.left.right == node && node.right.left == node;
+        return node.left != null && node.left.right == node &&  node.right != null && node.right.left == node;
     }
     public static int maxDepth(TreeNode node) {
         if (node == null) return 0;
