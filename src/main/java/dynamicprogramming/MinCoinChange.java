@@ -1,4 +1,4 @@
-package dp;
+package dynamicprogramming;
 
 public class MinCoinChange {
 
@@ -8,7 +8,7 @@ public class MinCoinChange {
             int minCoins = Integer.MAX_VALUE;
             for (int coin: coins)
                 if(i >= coin)
-                    minCoins = Math.min(minCoins,  (dp[i - coin] != Integer.MAX_VALUE) ? 1 + dp[i - coin] : dp[i - coin]);
+                    minCoins = Math.min(minCoins,  dp[i - coin] != Integer.MAX_VALUE ? 1 + dp[i - coin] : dp[i - coin]);
                 dp[i] = minCoins;
         }
         return dp[sum];

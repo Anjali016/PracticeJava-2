@@ -1,340 +1,1399 @@
 package binarytree;
 
-import divideandconquer.MajorityElement;
-
-import java.util.Stack;
+import java.util.*;
 
 public class TreeExamples {
 
-/*
-        Size of Tree
-* */
-    public static int size(TreeNode root) {
+    /**
+     * 1.
+     * Problem: Tree Traversals
 
-        if (root == null) return 0;
-        else return 1 + size(root.left) + size(root.right);
+     * Solution:
+     */
 
-    }
 
-    /*  height of tree
-    * */
+    /**
+     * 2.
+     * Problem: Write a program to Calculate Size of a tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 3.
+     * Problem: Write Code to Determine if Two Trees are Identical
+
+     * Solution:
+     */
+
+
+    /**
+     * 4.
+     * Problem:
+
+     * Solution: Write a Program to Find the Maximum Depth or Height of a Tree
+     */
 
     public static int height(TreeNode root) {
-
         if (root == null) return 0;
         else return 1 + Math.max(height(root.left), height(root.right));
     }
+    /**
+     * 5.
+     * Problem:
 
-    /*  identical tree
-    * */
-    public static boolean isIdenticalTrees(TreeNode root1, TreeNode root2) {
+     * Solution: Write a program to Delete a Tree.
+     */
 
-        return (root1 == null && root2 ==null) || ((root1 != null && root2 != null)) && ((root1.data == root2.data)
-                && (isIdenticalTrees(root1.left, root2.left)) &&
-                (isIdenticalTrees(root1.right, root2.right)));
-    }
-    /*  mirror tree
-    * */
+    /**
+     * 6.
+     * Problem: Write an Efficient Function to Convert a Binary Tree into its Mirror Tree
 
-    public static void mirrorTree(TreeNode root) {
+     * Solution:
+     */
 
+
+    /**
+     * 7.
+     * Problem: If you are given two traversal sequences, can you construct the binary tree?
+
+     * Solution:
+     */
+
+
+    /**
+     * 8.
+     * Problem: Given a binary tree, print out all of its root-to-leaf paths one per line.
+
+     * Solution:
+     */
+
+
+    /**
+     * 9.
+     * Problem: Lowest Common Ancestor in a Binary Search Tree.
+
+     * Solution: Lowest Common Ancestor in a Binary Search Tree.
+     */
+
+
+    /**
+     * 10.
+     * Problem: The Great Tree-List Recursion Problem.
+
+     * Solution: The Great Tree-List Recursion Problem.
+     */
+
+
+    /**
+     * 11.
+     * Problem: Level Order Tree Traversal
+
+     * Solution:  Level Order Tree Traversal
+     */
+
+
+    /**
+     * 12.
+     * Problem: Program to count leaf nodes in a binary tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 13.
+     * Problem: Level order traversal in spiral form
+
+     * Solution:
+     */
+
+
+    /**
+     * 14.
+     * Problem: Check for Children Sum Property in a Binary Tree
+
+     * Solution:
+     */
+
+    /**
+     * 15.
+     * Problem: Convert an arbitrary Binary Tree to a tree that holds Children Sum Property
+
+     * Solution:
+     */
+
+    /**
+     * 16.
+     * Problem: Diameter of a Binary Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 17.
+     * Problem:How to determine if a binary tree is height-balanced?
+
+     * Solution:
+     */
+
+
+    /**
+     * 18.
+     * Problem:Inorder Tree Traversal without Recursion
+
+     * Solution:
+     */
+
+
+    /**
+     * 19.
+     * Problem: Inorder Tree Traversal without recursion and without stack!
+
+     * Solution:
+     */
+
+
+    /**
+     * 20.
+     * Problem: Root to leaf path sum equal to a given number
+
+     * Solution:
+     */
+
+
+    /**
+     * 21.
+     * Problem: Construct Tree from given Inorder and Preorder traversals
+
+     * Solution:
+     */
+
+
+    /**
+     * 22.
+     * Problem: Given a binary tree, print all root-to-leaf paths
+
+     * Solution:
+     */
+
+    /**
+     * 23.
+     * Problem: Double Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 24.
+     * Problem: Maximum width of a binary tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 25.
+     * Problem: Foldable Binary Trees
+
+     * Solution:
+     */
+
+
+    /**
+     * 26.
+     * Problem: Print nodes at k distance from root
+     * Given a root of a tree, and an integer k. Print all the nodes which are at k distance from root.
+     * Solution:
+     */
+    public static void printNodesAtKdistance(TreeNode root, int k) {
         if (root == null) return;
-        mirrorTree(root.left);
-        mirrorTree(root.right);
-        TreeNode temp = root.left;
-        root.left = root.right;
-        root.right = temp;
+        else if (k == 0) System.out.print(root.data);
+        else {
+            printNodesAtKdistance(root.left, k - 1);
+            printNodesAtKdistance(root.right, k - 1);
+        }
     }
 
-    /*
-    *   preoder traversal
-    * */
-    public static void preOrder(TreeNode root) {
 
+
+    /**
+     * 27.
+     * Problem: Applications of tree data structure
+
+     * Solution:
+     */
+
+
+    /**
+     * 28.
+     * Problem: Get Level of a node in a Binary Tree
+     * Given a Binary Tree and a key, write a function that returns level of the key.
+     * Solution: The idea is to start from the root and level as 1.
+     * If the key matches with root’s data, return level. Else recursively call for left and right subtrees with level as level + 1.
+     */
+
+    public static int getLevel(TreeNode root, TreeNode node, int level) {
+        if (root == null) return 0;
+        else if (root == node) return level;
+        else return getLevel(root.left, node, level + 1) + getLevel(root.right, node, level + 1);
+    }
+
+
+    /**
+     * 29.
+     * Problem: Print Ancestors of a given node in Binary Tree
+
+     * Solution:
+     */
+
+    /**
+     * 30.
+     * Problem: Check if a given Binary Tree is SumTree
+
+     * Solution:
+     */
+
+
+    /**
+     * 31.
+     * Problem: Check if a binary tree is subtree of another binary tree | Set 1
+
+     * Solution:
+     */
+
+
+    /**
+     * 32.
+     * Problem: Connect nodes at same level
+
+     * Solution:
+     */
+
+
+    /**
+     * 33.
+     * Problem: Connect nodes at same level using constant extra space
+
+     * Solution:
+     */
+
+
+    /**
+     * 34.
+     * Problem: Populate Inorder Successor for all nodes
+
+     * Solution:
+     */
+
+
+    /**
+     * 35.
+     * Problem: Convert a given tree to its Sum Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 36.
+     * Problem: Vertical Sum in a given Binary Tree | Set 1
+
+     * Solution:
+     */
+
+    /**
+     * 37.
+     * Problem: Find the maximum sum leaf to root path in a Binary Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 38.
+     * Problem: Construct Special Binary Tree from given Inorder traversal
+
+     * Solution:
+     */
+
+
+    /**
+     * 39.
+     * Problem: Check if leaf traversal of two Binary Trees is same?
+
+     * Solution:
+     */
+
+
+    /**
+     * 40.
+     * Problem: Closest leaf to a given node in Binary Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 41.
+     * Problem: Locking and Unlocking of Resources arranged in the form of n-ary Tree J
+
+     * Solution:
+     */
+
+
+    /**
+     * 42.
+     * Problem: Find all possible binary trees with given Inorder Traversal
+
+     * Solution:
+     */
+
+
+    /**
+     * 43.
+     * Problem: Count number of subsets having a particular XOR value
+
+     * Solution:
+     */
+
+    /**
+     * 44.
+     * Problem: Find LCA in Binary Tree using RMQ
+
+     * Solution:
+     */
+
+
+    /**
+     * 45.
+     * Problem: Find multiplication of sums of data of leaves at same levels
+
+     * Solution:
+     */
+
+
+    /**
+     * 46.
+     * Problem: Find Count of Single Valued Subtrees
+
+     * Solution:
+     */
+
+
+    /**
+     * 47.
+     * Problem: Check if a given array can represent Preorder Traversal of Binary Search Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 48.
+     * Problem: Mirror of n-ary Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 49.
+     * Problem: Succinct Encoding of Binary Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 50.
+     * Problem: Construct Binary Tree from given Parent Array representation
+
+     * Solution:
+     */
+
+    /**
+     * 51.
+     * Problem: Symmetric Tree (Mirror Image of itself)
+
+     * Solution:
+     */
+
+
+    /**
+     * 52.
+     * Problem: Find Minimum Depth of a Binary Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 53.
+     * Problem: Maximum Path Sum in a Binary Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 54.
+     * Problem: Expression Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 55.
+     * Problem: Handshaking Lemma and Interesting Tree Properties
+
+     * Solution:
+     */
+
+
+    /**
+     * 56.
+     * Problem: Given a binary tree, how do you remove all the half nodes?
+
+     * Solution:
+     */
+
+
+    /**
+     * 57.
+     * Problem: Check whether a binary tree is a complete tree or not | Set 2 (Recursive Solution)
+
+     * Solution:
+     */
+
+    /**
+     * 58.
+     * Problem: Check whether a binary tree is a full binary tree or not
+
+     * Solution:
+     */
+
+
+    /**
+     * 59.
+     * Problem: Find sum of all left leaves in a given Binary Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 60.
+     * Problem: Remove nodes on root to leaf paths of length < K
+
+     * Solution:
+     */
+
+
+    /**
+     * 61.
+     * Problem: Find the closest leaf in a Binary Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 62.
+     * Problem: Diagonal Sum of a Binary Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 63.
+     * Problem: Bottom View of a Binary Tree
+
+     * Solution:
+     */
+
+    /**
+     * 64.
+     * Problem: Perfect Binary Tree Specific Level Order Traversal
+
+     * Solution:
+     */
+
+    /**
+     * 65.
+     * Problem: Print Nodes in Top View of Binary Tree
+
+     * Solution:
+     */
+
+    /**
+     * 66.
+     * Problem: Convert a Binary Tree to Threaded binary tree
+
+     * Solution:
+     */
+
+    /**
+     * 67.
+     * Problem: Serialize and Deserialize an N-ary Tree
+
+     * Solution:
+     */
+
+    /**
+     * 68.
+     * Problem: Serialize and Deserialize a Binary Tree
+
+     * Solution:
+     */
+
+    /**
+     * 69.
+     * Problem: Print nodes between two given level numbers of a binary tree
+     * Solution:
+     */
+
+    /**
+     * 70.
+     * Problem: Find Height of Binary Tree represented by Parent array
+
+     * Solution:
+     */
+
+    /**
+     * 71.
+     * Problem: Minimum no. of iterations to pass information to all nodes in the tree
+
+     * Solution:
+     */
+
+    /**
+     * 72.
+     * Problem: Check if two nodes are cousins in a Binary Tree
+
+     * Solution:
+     */
+
+    /**
+     * 73.
+     * Problem: Check if a binary tree is subtree of another binary tree | Set 2
+
+     * Solution:
+     */
+
+    /**
+     * 74.
+     * Problem: Find the maximum path sum between two leaves of a binary tree
+
+     * Solution:
+     */
+
+    /**
+     * 75.
+     * Problem: Reverse alternate levels of a perfect binary tree
+
+     * Solution:
+     */
+
+    /**
+     * 76.
+     * Problem: Print a Binary Tree in Vertical Order | Set 2 (Hashmap based Method)
+
+     * Solution:
+     */
+
+    /**
+     * 77.
+     * Problem: Serialize and Deserialize a Binary Tree
+
+     * Solution:
+     */
+
+    /**
+     * 78.
+     * Problem: Serialize and Deserialize an N-ary Tree
+
+     * Solution:
+     */
+
+    /**
+     * Page 6.
+     * 79.
+     * Problem: Convert a Binary Tree to Threaded binary tree
+
+     * Solution:
+     */
+
+    /**
+     * Page 6.
+     * 80.
+     * Problem: Print Nodes in Top View of Binary Tree
+     * Top view of a binary tree is the set of nodes visible when the tree is viewed from the top.
+     * Given a binary tree, print the top view of it. The output nodes can be printed in any order.
+     * Expected time complexity is O(n)
+
+     * Solution: Use HasSet, BFS, and mark the position.
+     */
+
+    public static void printTopView(TreeNode root) {
         if (root == null) return;
-        System.out.print(root.data);
-        preOrder(root.left);
-        preOrder(root.right);
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        Set<Integer> set = new HashSet<Integer>();
+        HashMap<TreeNode, Integer> map = new HashMap<TreeNode, Integer>();
+        map.put(root, 0);
+        while (!queue.isEmpty()) {
+            TreeNode curr = queue.poll();
+            int position = map.get(curr);
+            if (set.add(position)) System.out.print(curr.data + " ");
+            if (curr.left != null) {
+                queue.add(curr.left);
+                map.put(curr.left, map.get(curr) - 1);
+            }
+            if (curr.right != null) {
+                queue.add(curr.right);
+                map.put(curr.right, map.get(curr) + 1);
+            }
+        }
     }
 
-    //isLeaf
 
+    /**
+     * 81.
+     * Problem: Perfect Binary Tree Specific Level Order Traversal
+
+     * Solution:
+     */
+
+    /**
+     * Page 6.
+     * 82.
+     * Problem: Bottom View of a Binary Tree
+
+     * Solution: Use BFS and  TreeMap to store pos - > Node and replace every pos with new Node
+     */
+    public static void bottomView(TreeNode root) {
+        if (root == null) return;
+        TreeMap<Integer, TreeNode> resultMap = new TreeMap<Integer, TreeNode>();
+        Map<TreeNode, Integer> map = new HashMap<TreeNode, Integer>();
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        map.put(root, 0);
+        while (!queue.isEmpty()) {
+            TreeNode curr = queue.poll();
+            int position = map.get(curr);
+            resultMap.put(position, curr);
+            if (curr.left != null) {
+                queue.add(curr.left);
+                map.put(curr.left, map.get(curr) - 1);
+            }
+            if (curr.right != null) {
+                queue.add(curr.right);
+                map.put(curr.right, map.get(curr) + 1);
+            }
+        }
+        for (int key : resultMap.keySet()) System.out.print(resultMap.get(key).data + " ");
+
+    }
+
+    /**
+     * 83.
+     * Problem: Diagonal Sum of a Binary Tree
+
+     * Solution:
+     */
+
+
+
+    /**
+     * 84.
+     * Problem: Find the closest leaf in a Binary Tree
+
+     * Solution:
+     */
+
+    /**
+     * Page 6.
+     * 85.
+     * Problem: Remove nodes on root to leaf paths of length < K
+
+     * Solution:
+     */
+
+    /**
+     * Page 6.
+     * 86.
+     * Problem: Convert a given Binary Tree to Doubly Linked List | Set 3
+
+     * Solution:
+     */
+
+
+    /**
+     * Page 6.
+     * 87.
+     * Problem: Find sum of all left leaves in a given Binary Tree
+     * Solution: The idea is to traverse the tree return sum of all left leaves.
+     */
+    public static int sumOfLeftLeaves(TreeNode root, boolean isLeftLeaf) {
+            if (root == null) return 0;
+            else if (isLeaf(root) && isLeftLeaf) return root.data;
+            else return sumOfLeftLeaves(root.left, true) + sumOfLeftLeaves(root.right, false);
+    }
+
+    public static int sumOfLeftLeaves2(TreeNode root, TreeNode parent) {
+        if (root == null) return 0;
+        else if (isLeaf(root) && parent.left == root) return root.data;
+        else sumOfLeftLeaves2(root.left, root) + sumOfLeftLeaves2(root.right, root);
+
+    }
+
+
+
+     /**
+     * Page 6.
+     * 88.
+     * Problem: Check whether a binary tree is a full binary tree or not
+
+     * Solution:
+     */
+
+
+     /**
+     * Page 6.
+     * 89.
+     * Problem: Check whether a binary tree is a complete tree or not | Set 2 (Recursive Solution)
+
+     * Solution:
+     */
+
+    /**
+     * Page 6.
+     * 90. Problem: Given a binary tree, how do you remove all the half nodes?
+
+     * Solution:
+     */
+
+    /**
+     * Page 5.
+     * 91. Problem: Handshaking Lemma and Interesting Tree Properties
+     * Solution:
+     */
+
+
+
+    /**
+     * 92
+     * Problem: Expression Tree
+
+     * Solution:
+     */
+
+    /**
+     * 93
+     * Problem: Maximum Path Sum in a Binary Tree
+
+     * Solution:
+     */
+
+    /**
+     * 94
+     * Problem: Find Minimum Depth of a Binary Tree
+
+     * Solution:
+     */
+
+    /**
+     * 95
+     * Problem: Symmetric Tree (Mirror Image of itself)
+
+     * Solution:
+     */
+
+
+
+
+    /**
+     * 96
+     * Problem: Construct Binary Tree from given Parent Array representation
+
+     * Solution:
+     */
+
+    /**
+     * 97
+     * Problem: Succinct Encoding of Binary Tree
+
+     * Solution:
+     */
+
+    /**
+     * 98
+     * Problem: Mirror of n-ary Tree
+
+     * Solution:
+     */
+
+    /**
+     * 99
+     * Problem: Check if a given array can represent Preorder Traversal of Binary Search Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 100
+     * Problem: Find Count of Single Valued Subtrees
+
+     * Solution:
+     */
+
+    /**
+     * 101
+     * Problem: Find multiplication of sums of data of leaves at same levels
+
+     * Solution:
+     */
+
+    /**
+     * 102
+     * Problem: Find LCA in Binary Tree using RMQ
+
+     * Solution:
+     */
+
+    /**
+     * 103
+     * Problem: Find all possible binary trees with given Inorder Traversal
+
+     * Solution:
+     */
+
+
+
+    /**
+     * 104
+     * Problem: Locking and Unlocking of Resources arranged in the form of n-ary Tree
+
+     * Solution:
+     */
+
+    /**
+     * 105
+     * Problem: Closest leaf to a given node in Binary Tree
+
+     * Solution:
+     */
+
+    /**
+     * 106
+     * Problem: Check if leaf traversal of two Binary Trees is same?
+
+     * Solution:
+     */
+
+    /**
+     * 107.
+     * Problem: Inorder Non-threaded Binary Tree Traversal without Recursion or Stack
+
+     * Solution:
+     */
+
+
+    /**
+     * 108.
+     * Problem: Maximum difference between node and its ancestor in Binary Tree
+     * Given a binary tree, we need to find maximum value we can get by subtracting value of node B from value of node A,
+     * where A and B are two nodes of the binary tree and A is an ancestor of B. Expected time complexity is O(n).
+     * Solution:
+     */
     public static boolean isLeaf(TreeNode root) {
-
         return root.left == null && root.right == null;
     }
-//root to leaf paths
-    public static void printRootToPaths(TreeNode root, String sofar) {
 
-        if (root != null) {
-            if (isLeaf(root)) {
-                System.out.println(sofar + root.data + " ");
-            } else {
-                printRootToPaths(root.left, sofar + root.data + " ");
-                printRootToPaths(root.right, sofar + root.data + " ");
-            }
-        }
-    }
-
-    public static int getChildSum(TreeNode root) {
-        if (root == null) return 0;
-        return root.left.data + root.right.data;
-    }
-    //Check check childsum prodperty
-    public static boolean isChildsum(TreeNode node) {
-
-        if (!isLeaf(node) && node != null) {
-            return node.data == getChildSum(node) && isChildsum(node.left)
-                    && isChildsum(node.right);
-        }
-        return true;
-    }
-    //convert to child sum property
-    public static void convertTreeChidSum(TreeNode node) {
-
-        if (!isLeaf(node) && node != null) {
-            convertTreeChidSum(node.left);
-            convertTreeChidSum(node.right);
-            node.data = getChildSum(node);
-        }
-    }
-    // diameter
-    public static int diameter(TreeNode root) {
-
-        if (root == null) return 0;
-        else
-            return Math.max(1 + height(root.left) + height(root.right),
-                    Math.max(diameter(root.left), diameter(root.right)));
-    }
-
-
-
-            /*              *
-            *               **
-            *              ****
-            *
-            * */
-
-    public static void space() {
-        System.out.print(" ");
-    }
-
-    public static void star() {
-        System.out.print("*");
-    }
-    public static void printStar(int n) {
-
-            int mid = n / 2;
-            int l = mid, r = mid;
-
-            for (int i = 0; i < n/2; i++) {
-                for (int j = 0; j < n; j++) {
-                    if (j == l || j == r) star();
-                    else space();
-                }
-                l--;
-                r++;
-                System.out.println();
-            }
-
-        for (int i = 0; i < n/2 + 1; i++) System.out.print("* ");
-    }
-    //Efficient Diameter
-    static class Height {
-        int height = 0;
-    }
-
-    public static int diameterOpt(TreeNode root, Height nodeHeight) {
-
-        if (root == null) {
-            nodeHeight.height = 0;
-            return 0;
+    public static int findAmplitude(TreeNode root, ArrayList<Integer> path) {
+        if (isLeaf(root)) {
+            path.add(root.data);
+            return Collections.max(path) - Collections.min(path);
         }else {
-            Height lHeight = new Height(), rHeight = new Height();
-            lHeight.height++;
-            rHeight.height++;
-            int lDiameter = diameterOpt(root.left, lHeight);
-            int rDiamter = diameterOpt(root.right, rHeight);
-            nodeHeight.height = 1 + Math.max(lHeight.height, rHeight.height);
-            return Math.max(1 + lHeight.height + rHeight.height, Math.max(lDiameter, rDiamter));
+            ArrayList<Integer> newPath = new ArrayList<Integer>();
+            newPath.addAll(path);
+            newPath.add(root.data);
+            return Math.max(findAmplitude(root.left, newPath), findAmplitude(root.right, newPath));
         }
+    }
+    /**
+     * 109
+     * Problem: BFS vs DFS for Binary Tree
+
+     * Solution: A Tree is typically traversed in two ways:
+     * Breadth First Traversal (Or Level Order Traversal)
+     * Depth First Traversals
+     * Inorder Traversal (Left-Root-Right)
+     * Preorder Traversal (Root-Left-Right)
+     * Postorder Traversal (Left-Right-Root)
+     *
+     *
+     * Is there any difference in terms of Time Complexity?
+     * All four traversals require O(n) time as they visit every node exactly once.
+     * Is there any difference in terms of Extra Space.
+     * There is difference in terms of extra space required.
+     * Extra Space required for Level Order Traversal is O(w) where w is maximum width of Binary Tree. In level order traversal, queue one by one stores nodes of different level.
+     * Extra Space required for Depth First Traversals is O(h) where h is maximum height of Binary Tree. In Depth First Traversals, stack (or function call stack) stores all ancestors of a node.
+     * Maximum Width of a Binary Tree at depth (or height) h can be 2h where h starts from 0. So the maximum number of nodes can be at the last level. And worst case occurs when Binary Tree is a perfect Binary Tree with numbers of nodes like 1, 3, 7, 15, …etc. In worst case, value of 2h is Ceil(n/2).
+     *
+     * Height for a Balanced Binary Tree is O(Log n). Worst case occurs for skewed tree and worst case height becomes O(n).
+     *
+     * So in worst case extra space required is O(n) for both. But worst cases occur for different types of trees.
+     * How to Pick One?
+     * Extra Space can be one factor (Explained above.
+     *
+     * Depth First Traversals are typically recursive and recursive code requires function call overheads
+     *
+     * The most important points is, BFS starts visiting nodes from root while DFS starts visiting nodes from leaves.
+     * So if our problem is to search something that is more likely to closer to root, we would prefer BFS.
+     * And if the target node is close to a leaf, we would prefer DFS.
+     */
+
+    /**
+     * 110
+     * Problem: Construct a Binary Search Tree from given postorder
+
+     * Solution:
+     */
+
+    /**
+     * 112
+     * Problem: Lowest Common Ancestor in a Binary Tree | Set 2 (Using Parent Pointer)
+
+     * Solution:
+     */
 
 
+    /**
+     * 113
+     * Problem: Check sum of Covered and Uncovered nodes of Binary Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 114
+     * Problem: Check if removing an edge can divide a Binary Tree in two halves
+
+     * Solution:
+     */
+
+
+    /**
+     * 115
+     * Problem: Print leftmost and rightmost nodes of a Binary Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 116
+     * Problem: Check if removing an edge can divide a Binary Tree in two halves
+     *
+     * Solution:
+     */
+
+
+    /**
+     * 117
+     * Problem: Print leftmost and rightmost nodes of a Binary Tree
+
+     * Solution:
+     */
+
+    /**
+     * 118
+     * Problem: Vertical Sum in Binary Tree | Set 2 (Space Optimized)
+
+     * Solution:
+     */
+
+
+    /**
+     * 119
+     * Problem: Check if a binary tree is subtree of another binary tree | Set 1
+
+     * Solution:
+     */
+
+
+    /**
+     * 120
+     * Problem: Construct tree from ancestor matrix
+
+     * Solution:
+     */
+
+
+    /**
+     * 121
+     * Problem: Perfect Binary Tree Specific Level Order Traversal | Set 2
+
+     * Solution:
+     */
+
+
+    /**
+     * 122
+     * Problem: Convert a normal BST to Balanced BST
+
+     * Solution:
+     */
+
+
+    /**
+     * 123
+     * Problem: Convert a given Binary Tree to Doubly Linked List | Set 4
+
+     * Solution:
+     */
+
+
+    /**
+     * 124
+     * Problem: Diagonal Traversal of Binary Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 125
+     * Problem: Print root to leaf paths without using recursion
+
+     * Solution:
+     */
+
+
+    /**
+     * 126
+     * Problem: Non-recursive program to delete an entire binary tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 127
+     * Problem: Density of Binary Tree in One Traversal
+
+     * Solution:
+     */
+
+
+    /**
+     * 128
+     * Problem: Density of Binary Tree in One Traversal
+
+     * Solution:
+     */
+
+
+    /**
+     * 129
+     * Problem: Number of ways to traverse an N-ary tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 130
+     * Problem: Sink Odd nodes in Binary Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 131
+     * Problem: Print Binary Tree in 2-Dimensions
+
+     * Solution:
+     */
+
+    /**
+     * 132
+     * Problem: Create a Doubly Linked List from a Ternary Tree
+
+     * Solution:
+     */
+
+    /**
+     * 133
+     * Problem: How to determine if a binary tree is height-balanced?
+
+     * Solution:
+     */
+
+    /**
+     * 134
+     * Problem: Check if two trees are Mirror
+
+     * Solution:
+     */
+
+    /**
+     * 135
+     * Problem: Construct a Binary Tree from Postorder and Inorder
+
+     * Solution:
+     */
+
+    /**
+     * 136
+     * Problem: Find largest subtree having identical left and right subtrees
+
+     * Solution:
+     */
+
+
+    /**
+     * 137
+     * Problem: Iterative function to check if two trees are identical
+
+     * Solution:
+     */
+
+
+    /**
+     * 138
+     * Problem: Print cousins of a given node in Binary Tree
+
+     * Solution:
+     */
+
+    public static void printCousinsNodes(TreeNode root, TreeNode node, int level) {
+        if (root == null || level < 2) return;
+        else if (level == 2) {
+            if (root.left == node || root.right == node) return;
+            if (root.left != null) System.out.print(root.data + " ");
+            if (root.right != null) System.out.print(root.data + " ");
+        }
+        else {
+            printCousinsNodes(root.left, node, level - 1);
+            printCousinsNodes(root.right, node, level - 1);
+        }
+    }
+    public static void printCousins(TreeNode root, TreeNode node) {
+        if (root == null) return;
+        int level = getLevel(root, node, 1);
+        printCousinsNodes(root, node, level);
     }
 
 
-//count leaves
-    public  static int countLeaves(TreeNode node) {
 
+    /**
+     * 139
+     * Problem: Print extreme nodes of each level of Binary Tree in alternate order
+
+     * Solution: Use Queue for efficient method
+     */
+
+    public static void printExtremeNodesAlt(TreeNode root) {
+        int h = height(root);
+        boolean flag = false;
+        for (int i = 0; i < h; i++) {
+            printLevelSpiral(root, i, flag);
+            flag = !flag;
+        }
+    }
+    public static boolean printLevelSpiral(TreeNode root, int level, boolean flag) {
+
+        if (root == null) return true;
+        else if (level == 0) {
+            System.out.print(root.data + " ");
+            return true;
+        }
+        else if (flag) {
+            if (printLevelSpiral(root.left, level - 1, flag)) return true;
+            if (printLevelSpiral(root.right, level - 1, flag)) return true;
+        }
+        else {
+            if (printLevelSpiral(root.right, level - 1, flag)) return true;
+            if (printLevelSpiral(root.left, level - 1, flag)) return true;
+        }
+        return false;
+    }
+
+    /**
+     * 140
+     * Problem: Evaluation of Expression Tree
+
+     * Solution:
+     */
+
+
+    /**
+     * 141
+     * Problem: Find a number in minimum steps
+
+     * Solution:
+     */
+    public static int minSteps(int source, int dest, int step) {
+        if (Math.abs(source) > dest) return Integer.MAX_VALUE;
+        else if (source == dest) return step;
+        else return Math.min(minSteps(source - step - 1, dest, step + 1), minSteps(source + step + 1, dest, step + 1));
+    }
+
+    /**
+     * 142.
+     * Problem: Find height of a special binary tree whose leaf nodes are connected
+     * Given a special binary tree whose leaf nodes are connected to form a circular doubly linked list,
+     * find its height.
+     * Solution: Node is leaf if (node.left.right = node && node.right.left == node)
+     */
+
+    public static boolean isLeafModified(TreeNode node) {
+        return node.left != null && node.left.right == node && node.right.left == node;
+    }
+    public static int maxDepth(TreeNode node) {
         if (node == null) return 0;
-        else if (isLeaf(node)) return 1;
-        else return countLeaves(node.left) + countLeaves(node.right);
+        if (isLeafModified(node)) return 1;
+        return 1 + Math.max(maxDepth(node.left), maxDepth(node.right));
     }
 
-    //print spiral
-    public static void printSpiral(TreeNode root) {
 
-        int h = height(root);
-        boolean leftToRight = true;
-        for (int i = 0; i < h; i++) {
-
-            printLevelSpiral(root, i, leftToRight);
-            System.out.println();
-            leftToRight = !leftToRight ;
+    /**
+     * 143.
+     * Problem: Convert a Binary Tree to a Circular Doubly Link List
+     * Given a Binary Tree, convert it to a Circular Doubly Linked List (In-Place).
+     * Solution:
+     */
+    static TreeNode head = null;
+    static TreeNode prev = null;
+    public static void convertToCDLL(TreeNode root) {
+        if (root == null) return;
+        convertToCDLL(root.left);
+        if (head == null) head = root;
+        else {
+            prev.right = root;
+            root.left = prev;
         }
+        prev = root;
+        convertToCDLL(root.right);
     }
 
-    public static void printLevelSpiral(TreeNode root, int level, boolean leftToRight) {
-
-        if (root != null) {
-
-            if (level == 0) System.out.print(root.data + " ");
-            else if (leftToRight) {
-                printLevelSpiral(root.left, level - 1, leftToRight);
-                printLevelSpiral(root.right, level - 1, leftToRight);
-            }else {
-                printLevelSpiral(root.right, level - 1, leftToRight);
-                printLevelSpiral(root.left, level - 1, leftToRight);
-            }
-        }
-
+    public static void convertToCircularDLL(TreeNode root) {
+        convertToCDLL(root);
+        head.left = prev;
+        prev.right = head;
     }
 
 
-    public static void printLeveOrder(TreeNode root) {
 
-        int h = height(root);
-        for (int i = 0; i < h; i++) {
-            printLevel(root, i);
-            System.out.println();
-        }
-    }
-    static int leafLevel = Integer.MAX_VALUE;
-    public static boolean isAtSameLevel(TreeNode root, int currentLevel) {
+    /**
+     * 144.
+     * Problem: Maximum Consecutive Increasing Path Length in Binary Tree
 
-        if (root != null) {
-            if(isLeaf(root)) {
-                if (currentLevel > leafLevel) return false;
-                leafLevel = currentLevel;
-            }
-            if(!isAtSameLevel(root.left, currentLevel + 1)) return false;
-            if(!isAtSameLevel(root.right, currentLevel + 1)) return false;
+     * Solution:
+     */
 
-        }
-        return true;
-    }
 
-    public static void printLevel(TreeNode root, int level) {
 
-        if (root != null) {
-            if (level == 0) System.out.print(root.data + " ");
-            else {
-                printLevel(root.left, level - 1);
-                printLevel(root.right, level - 1);
-            }
-        }
-    }
-    //find lca
-    public static TreeNode lca(TreeNode root, int key1, int key2) {
-        if (root == null) return root;
-        if (root.data == key1 || root.data == key2) return root;
-        TreeNode leftLCA = lca(root.left, key1, key2);
-        TreeNode rightLCA = lca(root.right, key1, key2);
+    /**
+     * 145.
+     * Problem: Binary Indexed Tree : Range Updates and Point Queries
 
-        if (leftLCA != null && rightLCA != null) return root;
+     * Solution:
+     */
 
-        return (leftLCA != null) ? leftLCA : rightLCA;
-    }
 
-    public static  int search(int[] in, int key) {
 
-        for (int i = 0; i < in.length; i++)
-            if (in[i] == key) return i;
-        return -1;
-    }
-    static int start = 0;
+    /**
+     * 146.
+     * Problem: Flip Binary Tree
 
-    // construct from pre and inorder
-    public static TreeNode constructTree(int[] pre, int[] in, int left, int right) {
+     * Solution:
+     */
 
-        if (left > right) return null;
-        TreeNode root = new TreeNode(pre[start]);
-        int mid = search(in, pre[start]);
-        start++;
-        root.left = constructTree(pre, in, left, mid - 1);
-        root.right = constructTree(pre, in,mid + 1, right);
 
-        return root;
+
+
+    /**
+     * 147.
+     * Problem: Longest consecutive sequence in Binary tree
+     * Given a Binary Tree find the length of the longest path which comprises of nodes with consecutive values in increasing order.
+     * Every node is considered as a path of length 1.
+
+     * Solution: We can solve above problem recursively. At each node we need information of its parent node,
+     * if current node has value one more than its parent node then it makes a consecutive path, at each node
+     * we will compare node’s value with its parent value and update the longest consecutive path accordingly.
+     * For getting the value of parent node, we will pass the (node_value + 1) as an argument to the recursive method
+     * and compare the node value with this argument value, if satisfies, update the current length of consecutive path
+     * otherwise reinitialize current path length by 1.
+     */
+    public static void findLCP(TreeNode root, int currLCP, int parentValue, int[] lcp) {
+        if (root == null) return;
+        if (parentValue + 1 == root.data) currLCP++;
+        else currLCP = 1;
+        lcp[0] = Math.max(currLCP, lcp[0]);
+        findLCP(root.left, currLCP, root.data, lcp);
+        findLCP(root.right, currLCP, root.data, lcp);
     }
 
-    // inorder traversal without recursion
+    public static int findLCP(TreeNode root) {
+        if (root == null) return 0;
+        int[] lcp = new int[1];
+        findLCP(root, 0, root.data - 1, lcp);
+        return lcp[0];
 
-    public static void inOrderWithoutTraversal(TreeNode node) {
-
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        TreeNode root = node;
-        while (!stack.isEmpty() || root != null) {
-            if (root == null) {
-                TreeNode temp = stack.pop();
-                System.out.print(temp.data + " ");
-                root = temp.right;
-
-            }else {
-                stack.add(root);
-                root = root.left;
-            }
-
-
-
-        }
     }
-    // check is tree height balanced or not
-    public static boolean isBalanced(TreeNode root) {
 
-        if (root != null) {
-            int lHeight = height(root.left);
-            int rHeight = height(root.right);
-            return (Math.abs(lHeight - rHeight) < 2) && isBalanced(root.left) && isBalanced(root.right);
-        }
-        return true;
-    }
+
+
+
     public static void main(String[] args) {
-
-        TreeNode root = new TreeNode(10);
-        root.left = new TreeNode(2);
-        root.left.left = new TreeNode(4);
-        root.left.right = new TreeNode(5);
-        root.right = new TreeNode(8);
-        root.right.left = new TreeNode(9);
-        root.right.right = new TreeNode(7);
-//        root.right.right.right = new TreeNode(8);
-        System.out.print(isAtSameLevel(root, 0));
-
-//        TreeNode root1 = new TreeNode(1);
-//        root1.left = new TreeNode(2);
-//
-//        int [] in = {2, 1, 3};
-//        int [] pre = {1, 2, 3};
-//        Height h = new Height();
-//        inOrderWithoutTraversal(root);
-//        printStar(10);
-//        System.out.print(isChildsum(root));
-//        System.out.print(isBalanced(root));
-//        convertTreeChidSum(root);
-//        preOrder(root);
-//        System.out.print(diameterOpt(root, h));
-//        int hk = h.height;
-//        printSpiral(root);
-//        printLeveOrder(root);
-       // System.out.print(lca(root, 4, 5).data);
-       // root1.right = new TreeNode(3);
-
-//         mirrorTree(root);
-       // preOrder(root);
+       TreeNode root = new TreeNode(20);
+//        root.left = new TreeNode(9);
+//        root.right = new TreeNode(49);
+//        root.left.right = new TreeNode(12);
+//        root.left.left = new TreeNode(5);
+//        root.right.left = new TreeNode(23);
+//        root.right.right = new TreeNode(52);
+//        root.left.right.right = new TreeNode(12);
+//        root.right.right.left = new TreeNode(50);
+        root.left = new TreeNode(8);
+        root.right = new TreeNode(22);
+        root.left.left = new TreeNode(5);
+        root.left.right = new TreeNode(3);
+        root.right.left = new TreeNode(4);
+        root.right.right = new TreeNode(25);
+        root.left.right.left = new TreeNode(10);
+        root.left.right.right = new TreeNode(14);
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        list.add(2);
+        list.add(4);
+        list.add(1);
+        System.out.print(sumOfLeftLeaves(root, false));
+//        bottomView(root);
+//        int res = findAmplitude(root, new ArrayList<Integer>());
+//        System.out.print(res);
+//        root.right.left = new TreeNode(5);
+//        root.right.right = new TreeNode(6);
+//        root.right.right.left = new TreeNode(7);
+//        convertToCircularDLL(root);
+//        System.out.print(minSteps(0, 10, 0));
+//        printExtremeNodesAlt(root);
+//        System.out.print(getLevel(root, 7, 1));
+//        printNodesAtKdistance(root, 0);
 //        printRootToPaths(root, "");
-//        TreeNode newRoot = constructTree(pre, in,0, in.length - 1);
-//        preOrder(newRoot);
-
-//        System.out.print(isIdenticalTrees(root1, root));
     }
+
+
+
 }

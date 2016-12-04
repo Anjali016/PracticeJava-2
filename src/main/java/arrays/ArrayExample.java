@@ -990,9 +990,28 @@ return 0;
 
 
 
-     * Solution: first row => last col in res Matrix and so on.
+     * Solution:
      */
 
+    public static int maxProfitAtMulti(int[] price) {
+
+        int profit = 0;
+        for (int i = 1; i < price.length; i++) {
+            int diff = price[i- 1] - price[i];
+            if (diff > 0) profit += diff;
+        }
+        return profit;
+    }
+
+    public static int maxProfitAtOne(int[] price) {
+        int maxProfitSoFar = 0;
+        int minSofar = price[0];
+        for (int i = 1; i < price.length; i++) {
+            maxProfitSoFar = Math.max(maxProfitSoFar, price[i] - minSofar);
+            minSofar = Math.min(minSofar, price[i]);
+        }
+        return maxProfitSoFar;
+    }
 
     /**
      * 89.
@@ -1178,8 +1197,54 @@ return 0;
      * 102.
      * Problem: Count all distinct pairs with difference equal to k
      * Given an integer array and a positive integer k, count all distinct pairs with difference equal to k.
-     * Solution:
+     * Solution: Method 2 (Use Sorting)
+     * 1) Initialize count as 0
+     * 2) Sort all numbers in increasing order.
+     * 3) Remove duplicates from array.
+     * 4) Do following for each element arr[i]
+     * a) Binary Search for arr[i] + k in subarray from i+1 to n-1.
+     * b) If arr[i] + k found, increment count.
+     * 5) Return count.
+     *
+     * Method 3 (Use Self-balancing BST)
+     * 1) Initialize count as 0.
+     * 2) Insert all elements of arr[] in an AVL tree. While inserting,
+     * ignore an element if already present in AVL tree.
+     * 3) Do following for each element arr[i].
+     a) Search for arr[i] + k in AVL tree, if found then increment count.
+     b) Search for arr[i] - k in AVL tree, if found then increment count.
+     c) Remove arr[i] from AVL tree.
+     * Method 4 (Use Hashing)
+     * 1) Initialize count as 0.
+     * 2) Insert all distinct elements of arr[] in a hash map.  While inserting,
+     * ignore an element if already present in the hash map.
+     * 3) Do following for each element arr[i].
+     * a) Look for arr[i] + k in the hash map, if found then increment count.
+     * b) Look for arr[i] - k in the hash map, if found then increment count.
+     * c) Remove arr[i] from hash table.
+     * Method 5 (Use Sorting)
+
+     Sort the array arr
+     Take two pointers, l and r, both pointing to 1st element
+     Take the difference arr[r] – arr[l]
+     If value diff is K, increment count and move both pointers to next element
+     if value diff > k, move l to next element
+     if value diff < k, move r to next element
+     return count
      */
+
+
+    public static int coundPairsForDiff(int[] array, int diff) {
+        int count = 0;
+        Set<Integer> set = new HashSet<Integer>();
+        for (int n: array) set.add(n);
+        for (int n : array) {
+            if (set.contains(n + diff) || set.contains(n - diff)) count++;
+            set.remove(n);
+        }
+        return count;
+    }
+
 
     /**
      * 103.
@@ -1207,14 +1272,33 @@ return 0;
      * 104.
      * Problem: Smallest subarray with sum greater than a given value
      * Given an array of integers and a number x, find the smallest subarray with sum greater than the given value.
-     * Solution:
+     * Solution: Use sliding window
+     *
      */
+    public static int minLengthSubAraay(int[] array, int sum) {
+        int currSum = 0, minLength = array.length + 1, windowL = 0;
+        for (int windowR = 0; windowR < array.length; windowR++) {
+            while (currSum <= sum && windowR < array.length) currSum += array[windowR++];
+            while (currSum > sum && windowL < array.length) {
+                minLength = Math.min(minLength, windowR - windowL);
+                currSum -= array[windowL++];
+            }
+        }
+        return minLength;
+    }
 
     /**
      * 105.
      * Problem: Sort an array according to the order defined by another array
 
-     * Solution:
+     * Solution: Method 1 Hashing
+     * Method 3 (Use Hashing)
+     * 1. Loop through A1[], store the count of every number in a HashMap (key: number, value: count of number) .
+     * 2. Loop through A2[], check if it is present in HashMap, if so, put in output array that many times
+     * and remove the number from HashMap.
+     * 3. Sort the rest of the numbers present in HashMap and put in output array.
+     *
+     *
      */
 
     /**
@@ -1228,8 +1312,37 @@ return 0;
      * 107.
      * Problem: Sort an array in wave form
 
-     * Solution:
+     * Solution: Iterate over even index
+     * if (prev < curr) swap
+     * if (curr < next) swap
      */
+
+    public static void sortWay(int[] array) {
+
+        for (int i = 0; i < array.length; i += 2) {
+            if (i > 0 && array[i - 1] < array[i]) swapFunc(array, array[i - 1], array[i]);
+            if (i< array.length && array[i] < array[i + 1]) swapFunc(array, array[i], array[i + 1]);
+        }
+    }
+
+    public static void maxSumSofar(int[] array) {
+        int maxStart = 0, maxEnd = 0;
+        int currStart = 0;
+        int currSum = array[0];
+        int maxSofar = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (currSum + array[i] < array[i]) currStart = i;
+            currSum = Math.max(array[i], currSum + array[i]);
+            if (currSum > maxSofar) {
+                maxSofar = currSum;
+                maxStart = currStart;
+                maxEnd = i;
+            }
+        }
+
+        System.out.println(maxSofar);
+        System.out.print(maxStart + " ->" + maxEnd);
+    }
 
 
     /**
@@ -1374,9 +1487,9 @@ return 0;
      * find the smallest positive integer value that cannot be represented as sum of elements of any subset of given set.
      * Expected time complexity is O(n).
      *  Solution:
-     *  1. Initialize result = 1 (smallest outcome).
-     *  2 if ( arr[i] > result) found gap res is the answer
-     *  3 else add arr[i] to result.
+     *  1. Initialize result = 1 (smallest possible outcome).
+     *  2 if ( arr[i] > result) found gap, res is the answer
+     *  3 add arr[i] to result.
      */
 
     public static int findSmallest(int[] arr) {
@@ -1536,20 +1649,46 @@ return 0;
      * 131.
      * Problem: Maximum profit by buying and selling a share at most twice
 
-     * Solution:
+     * Solution:1) Create a table profit[0..n-1] and initialize all values in it 0.
+     * 2) Traverse price[] from right to left and update profit[i] such that profit[i] stores maximum profit achievable from one transaction in subarray price[i..n-1]
+     * 3) Traverse price[] from left to right and update profit[i] such that profit[i] stores maximum profit such that profit[i] contains maximum achievable profit from two transactions in subarray price[0..i]
+     * 4) Return profit[n-1]
      */
+
+    public static int maxProfit2Trans(int[] price) {
+        int[] profit = new int[price.length];
+        int maxPrice = price[price.length - 1];
+        for (int i = price.length - 2; i >= 0; i--) {
+            maxPrice = Math.max(maxPrice, price[i]);
+            profit[i] = Math.max(profit[i + 1], maxPrice - price[i]);
+        }
+        int minPrice = price[0];
+        for (int i = 1; i < price.length; i++) {
+            minPrice = Math.min(minPrice, price[i]);
+            profit[i] = Math.max(profit[i - 1], profit[i] + price[i] - minPrice);
+        }
+        return price[price.length - 1];
+    }
 
     /**
      * 132.
      * Problem: Find Union and Intersection of two unsorted Arrays
 
      * Solution:
+     *
+     * Method 2 (Use Sorting)
+     * 1) Sort arr1[] and arr2[]. This step takes O(mLogm + nLogn) time.
+     * 2) Use O(m + n) algorithms to find union and intersection of two sorted arrays.
+     * Method 4 (Use Hashing)
+     * 1) Use HashSet
      */
 
     /**
      * 133.
      * Problem: Count frequencies of all elements in array in O(1) extra space and O(n) time
-
+     * Given an unsorted array of n integers which can contain integers from 1 to n.
+     * Some elements can be repeated multiple times and some other elements can be absent from the array.
+     * Count frequency of all elements that are present and print the missing elements.
      * Solution:
      */
 
@@ -1831,8 +1970,9 @@ return 0;
                 {2, 4, 6, 8},
                 {0, 9, 10, 11}} ;
 
-        int[] a = {3, 3, 3, 3};
-        checkDuplicatesKDistance(a, 2);
+        int[] a = {-1000, -1, -2, -7, 20, 80, -1000, 2};
+        maxSumSofar(a);
+//        maxProfit2Trans(a);,
       //  System.out.print(minJumps(a, 0, a.length -1));
 //        findSubarray(a, 33);
 //        System.out.print(maxSumCircularSubarray(a));

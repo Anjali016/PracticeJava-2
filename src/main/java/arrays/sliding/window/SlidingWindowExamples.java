@@ -100,6 +100,24 @@ public class SlidingWindowExamples {
         return false;
     }
 
+    /**
+     * 104.
+     * Problem: Smallest subarray with sum greater than a given value
+     * Given an array of integers and a number x, find the smallest subarray with sum greater than the given value.
+     * Solution: Use sliding window
+     *
+     */
+    public static int minLengthSubAraay(int[] array, int sum) {
+        int currSum = 0, minLength = array.length + 1, windowL = 0;
+        for (int windowR = 0; windowR < array.length; windowR++) {
+            while (currSum <= sum && windowR < array.length) currSum += array[windowR++];
+            while (currSum > sum && windowL < array.length) {
+                minLength = Math.min(minLength, windowR - windowL);
+                currSum -= array[windowL++];
+            }
+        }
+        return minLength;
+    }
 
     /**
      * 123.

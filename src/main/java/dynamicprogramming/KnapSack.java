@@ -1,6 +1,4 @@
-package dp;
-
-import org.omg.CORBA.PUBLIC_MEMBER;
+package dynamicprogramming;
 
 import java.util.Scanner;
 

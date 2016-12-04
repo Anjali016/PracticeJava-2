@@ -1,22 +1,22 @@
-package dp;
+package dynamicprogramming;
 
 import java.math.BigInteger;
-import java.util.Scanner;
 
 public class DPproblems {
 
 //Given you can climb 1,2, or 3 stairs in one step, how many ways of reaching the top
 
+    public static int minCoinChange(int[] coins, int sum) {
 
-    public  int minCoinChange(int[] coins, int sum) {
-        int min = Integer.MAX_VALUE;
-        if (sum <= 0 || coins.length < 1) return 0;
+        if (sum <= 0) return 0;
         else {
+            int min = Integer.MAX_VALUE;
             for (int coin : coins)
                 if (coin <= sum)
                     min = Math.min(min, 1 + minCoinChange(coins, sum - coin));
+            return min;
         }
-        return min;
+
     }
 
     public static BigInteger fibbModified(int n, BigInteger[] dp) {
@@ -106,7 +106,6 @@ public class DPproblems {
 
 
     public static int minCoinChangeDP(int[] coins, int sum) {
-
         int[] dp = new int[sum + 1];
         for (int s = 0; s <= sum; s++) {
             int min = Integer.MAX_VALUE;
@@ -124,8 +123,9 @@ public class DPproblems {
 
 
     public static void main(String[] args) {
-        printSubSet("", "aba");
-
+        int[] coins = {5};
+        int res = minCoinChange(coins, 6);
+        System.out.print(res);
     }
 
 }

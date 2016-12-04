@@ -1,12 +1,10 @@
-package dp;
+package dynamicprogramming;
 
 public class CoinChange {
 
     //Bottom up
     public static int coinChange(int[] coins, int sum, int n) {
-
         int[][] dp = new int[sum + 1][n + 1];
-
         for (int i = 0 ; i < dp[0].length; i++)
             dp[0][i] = 1;
         for (int s = 1; s <= sum; s++){

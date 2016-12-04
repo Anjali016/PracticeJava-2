@@ -1,6 +1,5 @@
-package dp.strings.problems;
+package dynamicprogramming.strings.problems;
 
-import java.math.BigInteger;
 import java.util.LinkedHashSet;
 import java.util.Set;
 

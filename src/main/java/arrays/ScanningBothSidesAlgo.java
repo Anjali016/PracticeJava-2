@@ -2,6 +2,32 @@ package arrays;
 
 public class ScanningBothSidesAlgo {
 
+    /**
+     * 131.
+     * Problem: Maximum profit by buying and selling a share at most twice
+
+     * Solution:1) Create a table profit[0..n-1] and initialize all values in it 0.
+     * 2) Traverse price[] from right to left and update profit[i] such that profit[i] stores maximum profit achievable from one transaction in subarray price[i..n-1]
+     * 3) Traverse price[] from left to right and update profit[i] such that profit[i] stores maximum profit such that profit[i] contains maximum achievable profit from two transactions in subarray price[0..i]
+     * 4) Return profit[n-1]
+     */
+
+    public static int maxProfit2Trans(int[] price) {
+        int[] profit = new int[price.length];
+        int maxPrice = price[price.length - 1];
+        for (int i = price.length - 2; i >= 0; i--) {
+            maxPrice = Math.max(maxPrice, price[i]);
+            profit[i] = Math.max(profit[i + 1], maxPrice - price[i]);
+        }
+        int minPrice = price[0];
+        for (int i = 1; i < price.length; i++) {
+            minPrice = Math.min(minPrice, price[i]);
+            profit[i] = Math.max(profit[i - 1], profit[i] + price[i] - minPrice);
+        }
+        return price[price.length - 1];
+    }
+
+
     /*
     * 136.
     * Problem: Tapping of Rain water
